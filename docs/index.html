@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vwè Sa — L&#x27;actualité des îles de la Caraïbe</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+ --bg:#FFFFFF;--soft:#F1F5F6;--ink:#13222A;--muted:#55666E;--line:#DCE3E6;--brand:#0B3D4A;--brand-ink:#FFFFFF;--accent:#C2263A;--gold:#E0A82A;
+ --serif:Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,"Times New Roman",serif;--sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0D181D;--soft:#13232A;--ink:#E7EEF0;--muted:#9AAEB5;--line:#24373F;--brand:#0F2F38;--brand-ink:#E7EEF0;--accent:#F07386;--gold:#F0C04F}}
+:root[data-theme="dark"]{--bg:#0D181D;--soft:#13232A;--ink:#E7EEF0;--muted:#9AAEB5;--line:#24373F;--brand:#0F2F38;--brand-ink:#E7EEF0;--accent:#F07386;--gold:#F0C04F}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 110px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:hover h2,a:hover h3,a:hover .t{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 1.25rem}
+[hidden]{display:none!important}
+.ill{overflow:hidden;background:#1d2b33;border-radius:3px}
+.ill svg{display:block;width:100%;height:100%}
+.ill img{display:block;width:100%;height:100%;object-fit:cover}
+figcaption a,.credits a{color:inherit;text-decoration:underline}
+.credits{font-family:var(--sans);font-size:.75rem;color:var(--muted);padding:1.2rem 0;border-top:1px solid var(--line)}
+.credits p{margin:0 0 .3rem}
+
+header.top{background:var(--brand);color:var(--brand-ink);position:sticky;top:0;z-index:10;padding-top:env(safe-area-inset-top,0px)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-top:.8rem;padding-bottom:.8rem}
+.logo{font-family:var(--serif);font-weight:700;font-size:2rem;line-height:1;letter-spacing:-.02em;margin:0}
+.logo span{color:var(--gold)}
+.bar-right{display:flex;align-items:center;gap:.8rem;font-family:var(--sans);font-size:.85rem}
+.today{background:var(--accent);color:#fff;font-weight:700;padding:.3rem .75rem;border-radius:999px}
+.themebtn{font:inherit;color:inherit;background:none;border:1px solid currentColor;border-radius:999px;padding:.25rem .7rem;cursor:pointer;opacity:.85}
+@media (max-width:480px){.today{display:none}}
+nav.iles{border-top:1px solid rgba(255,255,255,.15)}
+.iles-inner{display:flex;overflow-x:auto;scrollbar-width:none}
+.iles-inner::-webkit-scrollbar{display:none}
+.iles button{font-family:var(--sans);font-weight:600;font-size:.88rem;white-space:nowrap;background:none;border:0;border-bottom:3px solid transparent;color:inherit;opacity:.8;padding:.7rem .9rem .55rem;cursor:pointer}
+.iles button[aria-pressed="true"]{opacity:1;border-bottom-color:var(--gold)}
+
+.cat{font-family:var(--sans);font-weight:600;font-size:.82rem;color:var(--muted);margin:0}
+.pays{color:var(--accent);font-weight:800;margin-right:.35rem}
+.meta{font-family:var(--sans);font-size:.78rem;color:var(--muted);margin:0}
+
+/* Héros */
+.hero{position:relative;min-height:min(76vh,620px);display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+.hero .ill{position:absolute;inset:0;border-radius:0}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,10,22,0) 25%,rgba(6,10,22,.9) 100%);pointer-events:none}
+.hero-txt{position:relative;z-index:1;padding-top:3rem;padding-bottom:2.6rem;width:100%}
+.hero .cat,.hero .meta{color:rgba(255,255,255,.82)}
+.hero .pays{color:var(--gold)}
+.hero h2{font-weight:700;font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;letter-spacing:-.02em;margin:.4rem 0 .8rem;max-width:22ch}
+.hero p.chapo{font-size:1.15rem;max-width:60ch;margin:0 0 .8rem}
+
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem;padding:2rem 0;border-bottom:1px solid var(--line)}
+@media (max-width:820px){.trio{grid-template-columns:1fr}}
+.card .ill{aspect-ratio:16/9;margin-bottom:.7rem}
+.card h3{font-weight:600;font-size:1.25rem;line-height:1.22;margin:.25rem 0 .35rem}
+@media (max-width:820px){.trio .card a{display:grid;grid-template-columns:120px 1fr;gap:.9rem;align-items:start}.trio .card .ill{aspect-ratio:4/3;margin:0}.trio .card h3{font-size:1.08rem}}
+
+.continu{background:var(--soft);border-bottom:1px solid var(--line)}
+.continu .wrap{display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;padding-top:1.3rem;padding-bottom:1.3rem}
+@media (max-width:700px){.continu .wrap{grid-template-columns:1fr;gap:.4rem}}
+.continu h2{font-family:var(--sans);font-weight:800;font-size:1.1rem;margin:0}
+.continu p{margin:0;color:var(--muted);max-width:72ch}
+
+section.block{padding:2.8rem 0}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;border-bottom:3px solid var(--ink);margin-bottom:1.4rem;padding-bottom:.5rem}
+.sec-head h2{font-weight:700;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.01em;margin:0}
+.sec-head p{font-family:var(--sans);font-size:.9rem;color:var(--muted);margin:0}
+
+.news{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:2.5rem}
+@media (max-width:960px){.news{grid-template-columns:1fr}}
+.row a{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:1.4rem;padding:1.3rem 0;border-bottom:1px solid var(--line)}
+.row:first-child a{padding-top:0}
+.row h3{font-weight:600;font-size:1.32rem;line-height:1.22;margin:.3rem 0 .4rem}
+.row .sum{font-size:.98rem;line-height:1.5;color:var(--muted);margin:0 0 .45rem}
+.row .ill{aspect-ratio:16/10}
+@media (max-width:600px){.row a{grid-template-columns:minmax(0,1fr) 108px;gap:.9rem}.row .sum{display:none}.row h3{font-size:1.1rem}.row .ill{aspect-ratio:1}}
+.empty{font-family:var(--sans);color:var(--muted)}
+aside{display:flex;flex-direction:column;gap:2rem}
+aside h3{font-family:var(--sans);font-weight:800;font-size:1rem;margin:0 0 .8rem;padding-bottom:.4rem;border-bottom:2px solid var(--accent)}
+.brefs{list-style:none;margin:0;padding:0}
+.brefs li{padding:.6rem 0;border-top:1px solid var(--line);font-size:.95rem;line-height:1.4}
+.brefs li:first-child{border-top:0;padding-top:0}
+.brefs b{font-family:var(--sans);font-size:.8rem;color:var(--accent);display:block}
+.rank{list-style:none;margin:0;padding:0;counter-reset:r}
+.rank li{counter-increment:r;border-top:1px solid var(--line)}
+.rank li:first-child{border-top:0}
+.rank a{display:grid;grid-template-columns:2rem 1fr;gap:.5rem;padding:.7rem 0;line-height:1.35}
+.rank li:first-child a{padding-top:0}
+.rank a::before{content:counter(r);font-weight:700;font-size:1.6rem;line-height:1;color:var(--accent)}
+.rank .t{font-weight:600}
+
+.culture{background:var(--brand);color:var(--brand-ink)}
+.culture .sec-head{border-color:var(--gold)}
+.culture .sec-head p,.culture .meta,.culture .cat{color:rgba(255,255,255,.72)}
+.culture .pays{color:var(--gold)}
+.feature a{display:grid;grid-template-columns:1.2fr 1fr;gap:2rem;align-items:center;margin-bottom:2.4rem}
+.feature:last-child a{margin-bottom:0}
+.feature.rev .ill{order:2}
+@media (max-width:760px){.feature a{grid-template-columns:1fr;gap:1rem}.feature.rev .ill{order:0}}
+.feature .ill{aspect-ratio:16/10}
+.feature h3{font-weight:700;font-size:clamp(1.4rem,2.6vw,1.9rem);line-height:1.15;margin:.3rem 0 .6rem}
+.feature p.sum{margin:0 0 .6rem;max-width:56ch}
+
+.shows{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.4rem}
+.show{border-top:4px solid var(--accent);background:var(--soft);padding:1.2rem;display:flex;flex-direction:column;gap:.4rem}
+.show:nth-child(2){border-color:var(--gold)}.show:nth-child(3){border-color:#2F6E3B}.show:nth-child(4){border-color:#1D5C8C}
+.show .when{font-family:var(--sans);font-weight:700;font-size:.85rem;color:var(--muted)}
+.show h3{font-weight:700;font-size:1.35rem;margin:0}
+.show p{margin:0;font-size:.95rem;color:var(--muted)}
+.show .kind{margin-top:auto;font-family:var(--sans);font-size:.8rem;font-weight:600;padding-top:.6rem}
+
+.mission{background:var(--soft)}
+.mission .wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:2.5rem;align-items:start}
+@media (max-width:760px){.mission .wrap{grid-template-columns:1fr;gap:1rem}}
+.mission h2{font-weight:700;font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.08;margin:0}
+.mission p{margin:0 0 .9rem;max-width:62ch}
+
+/* Page article */
+.article{padding:2rem 0 3rem}
+.back{font-family:var(--sans);font-weight:600;font-size:.9rem;display:inline-block;margin-bottom:1.4rem;color:var(--muted);background:none;border:0;padding:0;cursor:pointer}
+.back:hover{color:var(--accent)}
+.art-head{max-width:820px}
+.art-head h1{font-weight:700;font-size:clamp(2rem,4.6vw,3.2rem);line-height:1.06;letter-spacing:-.02em;margin:.5rem 0 .9rem}
+.art-head .chapo{font-size:1.25rem;line-height:1.5;margin:0 0 1.1rem;color:var(--ink)}
+.byline{font-family:var(--sans);font-size:.85rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:.3rem 1rem;padding:.8rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.byline b{color:var(--ink)}
+figure{margin:1.8rem 0}
+figure .ill{aspect-ratio:16/9}
+figcaption{font-family:var(--sans);font-size:.8rem;color:var(--muted);margin-top:.5rem}
+.art-grid{display:grid;grid-template-columns:minmax(0,680px) 1fr;gap:3rem}
+@media (max-width:960px){.art-grid{grid-template-columns:1fr}}
+.art-body p{font-size:1.15rem;line-height:1.7;margin:0 0 1.2rem}
+.art-body p:first-child::first-letter{float:left;font-size:3.6rem;line-height:.85;font-weight:700;padding:.35rem .5rem 0 0;color:var(--accent)}
+.art-body h2{font-family:var(--serif);font-weight:700;font-size:1.5rem;margin:2rem 0 .8rem}
+.art-body a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.sources a{color:var(--accent);text-decoration:underline}
+.sources{font-family:var(--sans);font-size:.88rem;color:var(--muted);background:var(--soft);border-left:3px solid var(--gold);padding:.9rem 1.1rem;margin-top:2rem}
+.related h3{font-family:var(--sans);font-weight:800;font-size:1rem;margin:0 0 1rem;padding-bottom:.4rem;border-bottom:2px solid var(--accent)}
+.related .card{margin-bottom:1.4rem}
+.related .card h3{font-family:var(--serif);border:0;padding:0;font-size:1.12rem;margin:.25rem 0}
+
+footer{background:var(--brand);color:var(--brand-ink);font-family:var(--sans);font-size:.88rem}
+footer .wrap{padding-top:2.2rem;padding-bottom:2.2rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1.5rem}
+footer .logo{font-size:1.7rem}
+footer p{margin:.4rem 0 0;max-width:58ch;opacity:.8}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<filter id="vs-grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"/></filter>
+<radialGradient id="vs-vig" cx="50%" cy="50%" r="72%"><stop offset="55%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity=".38"/></radialGradient>
+<filter id="vs-b1" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="1"/></filter>
+<filter id="vs-b2" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2"/></filter>
+<filter id="vs-b4" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4"/></filter>
+<filter id="vs-b10" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter>
+</defs></svg>
+
+<header class="top">
+  <div class="wrap bar">
+    <a href="#/" aria-label="Vwè Sa, accueil"><span class="logo">Vwè Sa<span>.</span></span></a>
+    <div class="bar-right">
+      <span class="today">Mardi 6 octobre 2026</span>
+      <button class="themebtn" type="button" id="themeBtn">Clair / sombre</button>
+    </div>
+  </div>
+  <nav class="iles" aria-label="Filtrer par île">
+    <div class="wrap iles-inner" id="filters"></div>
+  </nav>
+</header>
+
+<main id="home">
+  <section class="hero" id="hero"></section>
+  <div class="wrap"><div class="trio" id="trio"></div></div>
+  <div class="continu"><div class="wrap"><h2>L'info des îles, en continu</h2><p>Politique, économie, société, environnement : chaque jour, Vwè Sa rassemble l'essentiel de l'actualité, de la Guadeloupe à Haïti et de la Martinique à la Jamaïque.</p></div></div>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head"><h2>Les nouvelles de nos îles</h2><p id="count"></p></div>
+      <div class="news">
+        <div><div id="rows"></div><p class="empty" id="empty" hidden></p></div>
+        <aside>
+          <div><h3>Les plus lus</h3><ol class="rank" id="rank"></ol></div>
+          <div><h3>Nos sources du jour</h3><ul class="brefs" id="srcs"></ul></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="block culture" id="cultureSec">
+    <div class="wrap">
+      <div class="sec-head"><h2>Culture, musique et traditions</h2><p>Ce qui fait vibrer les îles</p></div>
+      <div id="culture"></div>
+    </div>
+  </section>
+
+  <section class="block mission">
+    <div class="wrap">
+      <h2>Informer, expliquer, relier les îles</h2>
+      <div>
+        <p>Vwè Sa, « regarde ça » en créole, part d'une conviction : ce qui se passe à Port-au-Prince, Kingston ou Basse-Terre nous concerne tous. Les îles partagent une mer, une histoire et souvent les mêmes défis.</p>
+        <p>Chaque matin, nous sélectionnons l'information publiée par les médias de la région et la résumons avec nos propres mots, avec l'aide d'une intelligence artificielle encadrée par une charte stricte. Chaque article renvoie vers ses sources : pour aller plus loin, lisez les médias qui ont fait le travail de terrain.</p><p>Une erreur ? Écrivez-nous à <a href="mailto:contact@exemple.fr" style="text-decoration:underline">contact@exemple.fr</a>, nous corrigeons au plus vite.</p>
+      </div>
+    </div>
+  </section>
+  <div class="wrap credits" id="credits"></div>
+</main>
+
+<main id="articleView" hidden>
+  <div class="wrap article" id="article"></div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><span class="logo">Vwè Sa<span style="color:var(--gold)">.</span></span><p>Revue de presse caribéenne. Articles résumés avec l'aide d'une intelligence artificielle à partir des sources citées sous chaque article. Illustrations originales.</p></div>
+    <p><a href="mentions-legales.html" style="text-decoration:underline">Mentions légales et charte éditoriale</a><br>Rectification : <a href="mailto:contact@exemple.fr" style="text-decoration:underline">contact@exemple.fr</a><br>Dernière mise à jour : 06/10/2026 à 17h51 (heure des Antilles)</p>
+  </div>
+</footer>
+
+<script>
+var ILL = (function(){
+var uid = 0;
+function rnd(seed){ var s = seed; return function(){ s = (s*16807) % 2147483647; return (s-1)/2147483646; }; }
+function lg(id, x1,y1,x2,y2, st){ return '<linearGradient id="'+id+'" x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'">'+st.map(function(s){return '<stop offset="'+s[0]+'" stop-color="'+s[1]+'"'+(s[2]!=null?' stop-opacity="'+s[2]+'"':'')+'/>';}).join('')+'</linearGradient>'; }
+function rg(id, cx,cy,r, st){ return '<radialGradient id="'+id+'" cx="'+cx+'" cy="'+cy+'" r="'+r+'">'+st.map(function(s){return '<stop offset="'+s[0]+'" stop-color="'+s[1]+'"'+(s[2]!=null?' stop-opacity="'+s[2]+'"':'')+'/>';}).join('')+'</radialGradient>'; }
+function palm(x,y,h,c,lean){
+  var tx = x+lean, ty = y-h, o = '<path d="M'+x+' '+y+' Q'+(x+lean*0.2)+' '+(y-h*0.6)+' '+tx+' '+ty+'" stroke="'+c+'" stroke-width="'+(h*0.05)+'" fill="none" stroke-linecap="round"/>';
+  [[-1,0.15],[-0.9,-0.35],[-0.4,-0.6],[0.3,-0.65],[0.85,-0.3],[1,0.2],[0.55,0.45],[-0.55,0.45]].forEach(function(d){
+    var ex = tx + d[0]*h*0.55, ey = ty + d[1]*h*0.4 + h*0.12;
+    var mx = tx + d[0]*h*0.3, my = ty + d[1]*h*0.35 - h*0.06;
+    o += '<path d="M'+tx+' '+ty+' Q'+mx+' '+my+' '+ex+' '+ey+'" stroke="'+c+'" stroke-width="'+(h*0.045)+'" fill="none" stroke-linecap="round"/>';
+    o += '<path d="M'+tx+' '+ty+' Q'+mx+' '+(my+h*0.05)+' '+ex+' '+ey+'" stroke="'+c+'" stroke-width="'+(h*0.02)+'" fill="none" stroke-dasharray="2 5" stroke-linecap="round"/>';
+  });
+  return o;
+}
+function plane(x,y,s,c,rot){ return '<g transform="translate('+x+' '+y+') rotate('+(rot||0)+') scale('+s+')" fill="'+c+'"><path d="M-60 0 Q-58 -5 -40 -6 L50 -5 Q66 -4 70 0 Q66 4 50 5 L-40 6 Q-58 5 -60 0Z"/><path d="M-5 -5 L20 -5 L-10 -48 L-22 -48Z"/><path d="M-5 5 L20 5 L-10 48 L-22 48Z"/><path d="M-48 -3 L-38 -3 L-50 -24 L-58 -24Z"/><path d="M-48 3 L-38 3 L-50 18 L-56 18Z" opacity=".8"/></g>'; }
+function runner(x,y,s,c,ph){
+  var a = ph ? 1 : -1;
+  return '<g transform="translate('+x+' '+y+') scale('+s+')" stroke="'+c+'" stroke-linecap="round" fill="none"><circle cx="0" cy="-92" r="9" fill="'+c+'" stroke="none"/><path d="M0 -80 L-6 -40" stroke-width="13"/><path d="M-6 -40 L'+(10*a)+' -16 L'+(4*a)+' 8" stroke-width="9"/><path d="M-6 -40 L'+(-18*a)+' -18 L'+(-30*a)+' -4" stroke-width="9"/><path d="M-2 -74 L'+(16*a)+' -60 L'+(26*a)+' -72" stroke-width="7"/><path d="M-2 -74 L'+(-16*a)+' -58 L'+(-12*a)+' -44" stroke-width="7"/></g>';
+}
+function wrap(defs, body){ return '<svg viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>'+defs+'</defs>'+body+'<rect width="800" height="450" filter="url(#vs-grain)" opacity=".16"/><rect width="800" height="450" fill="url(#vs-vig)"/></svg>'; }
+
+var S = {};
+
+S.haiti = function(p){
+  var R = rnd(7), d = lg(p+'sky',0,0,0,1,[[0,'#1C2547'],[.45,'#5E3B66'],[.78,'#D9705A'],[1,'#F2B068']])
+    + rg(p+'sun','50%','50%','50%',[[0,'#FFE6B8',1],[.25,'#FFC27A',.8],[1,'#FF9A5A',0]])
+    + lg(p+'haze',0,0,0,1,[[0,'#E59A7A',0],[1,'#E59A7A',.55]])
+    + lg(p+'far',0,0,0,1,[[0,'#7D5672'],[1,'#5B4566']])
+    + lg(p+'mid',0,0,0,1,[[0,'#3F3557'],[1,'#2C2944']])
+    + lg(p+'near',0,0,0,1,[[0,'#211F35'],[1,'#141325']]);
+  var b = '<rect width="800" height="450" fill="url(#'+p+'sky)"/><circle cx="560" cy="215" r="210" fill="url(#'+p+'sun)"/><circle cx="560" cy="215" r="34" fill="#FFE9C2"/>'
+    + '<path d="M0 230 L90 170 L170 205 L260 140 L360 200 L450 160 L560 215 L660 150 L800 210 V450 H0Z" fill="url(#'+p+'far)"/>'
+    + '<rect y="170" width="800" height="90" fill="url(#'+p+'haze)"/>'
+    + '<path d="M0 290 Q120 230 230 262 T460 250 T680 236 T800 258 V450 H0Z" fill="url(#'+p+'mid)"/>';
+  for (var i=0;i<70;i++){ var x = R()*800, y = 262 + R()*120 + (Math.abs(x-400)/400)*-10, w = 10+R()*14, h = 7+R()*8;
+    b += '<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+w.toFixed(1)+'" height="'+h.toFixed(1)+'" fill="#2A2742"/>';
+    if (R()>0.35) b += '<rect x="'+(x+w*0.3).toFixed(1)+'" y="'+(y+h*0.3).toFixed(1)+'" width="3" height="3" fill="#FFC86E" opacity="'+(0.6+R()*0.4).toFixed(2)+'"/>';
+  }
+  b += '<path d="M0 360 Q200 320 400 350 T800 335 V450 H0Z" fill="url(#'+p+'near)"/>' + palm(90,450,190,'#0E0D1C',-30) + palm(720,450,160,'#0E0D1C',25) + palm(650,450,120,'#121124',10);
+  return wrap(d,b);
+};
+
+S.grenada = function(p){
+  var R = rnd(11), d = lg(p+'sky',0,0,0,1,[[0,'#7DB8DE'],[1,'#DDEFF5']])
+    + lg(p+'sea',0,0,0,1,[[0,'#2C9AA6'],[1,'#0D4E62']])
+    + lg(p+'hill',0,0,0,1,[[0,'#5E8F63'],[1,'#3E6A47']])
+    + lg(p+'far',0,0,0,1,[[0,'#8FB2A4'],[1,'#7FA696']]);
+  var b = '<rect width="800" height="450" fill="url(#'+p+'sky)"/><ellipse cx="200" cy="80" rx="140" ry="22" fill="#fff" opacity=".55" filter="url(#vs-b10)"/><ellipse cx="620" cy="60" rx="110" ry="18" fill="#fff" opacity=".5" filter="url(#vs-b10)"/>'
+    + '<path d="M0 170 Q150 110 300 150 T560 120 T800 160 V300 H0Z" fill="url(#'+p+'far)"/>'
+    + '<path d="M0 220 Q140 150 330 190 Q480 215 560 300 H0Z" fill="url(#'+p+'hill)"/>';
+  var cols = ['#F4EDE0','#F2D8A8','#E9B9A0','#CFE1D8','#F6F1E6','#E7C9C2'];
+  for (var i=0;i<90;i++){ var x = R()*520, top = 200 - 50*Math.sin(Math.PI*x/600) + 12, y = top + R()*(300-top-14), w = 14+R()*12, h = 10+R()*8;
+    b += '<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+w.toFixed(1)+'" height="'+h.toFixed(1)+'" fill="'+cols[i%6]+'"/><polygon points="'+(x-2).toFixed(1)+','+y.toFixed(1)+' '+(x+w/2).toFixed(1)+','+(y-6).toFixed(1)+' '+(x+w+2).toFixed(1)+','+y.toFixed(1)+'" fill="'+(R()>.25?'#B2442E':'#8B3A2A')+'"/>';
+    if (R()>.5) b += '<rect x="'+(x+3).toFixed(1)+'" y="'+(y+4).toFixed(1)+'" width="3" height="4" fill="#5A4A40" opacity=".6"/>';
+  }
+  b += '<rect y="290" width="800" height="160" fill="url(#'+p+'sea)"/>';
+  for (var j=0;j<40;j++){ var yy = 300+R()*140, xx = R()*800; b += '<path d="M'+xx.toFixed(0)+' '+yy.toFixed(0)+' h'+(20+R()*60).toFixed(0)+'" stroke="#BFEFF0" stroke-width="1.5" opacity="'+(.2+R()*.4).toFixed(2)+'"/>'; }
+  b += '<rect y="292" width="560" height="22" fill="#3E6A47" opacity=".35" filter="url(#vs-b4)"/>';
+  [[600,350,1],[680,395,1.3],[470,410,1.1]].forEach(function(t){ b += '<g transform="translate('+t[0]+' '+t[1]+') scale('+t[2]+')"><path d="M-40 0 H40 L30 12 H-30Z" fill="#F7F4EE"/><path d="M-30 12 H30" stroke="#0D4E62" stroke-width="3" opacity=".4"/><path d="M0 0 V-60" stroke="#E8E2D6" stroke-width="2"/><path d="M2 -58 L30 -6 H2Z" fill="#fff" opacity=".9"/><path d="M-40 16 H40" stroke="#fff" stroke-width="2" opacity=".35"/></g>'; });
+  return wrap(d,b);
+};
+
+S.football = function(p){
+  var R = rnd(5), d = lg(p+'sky',0,0,0,1,[[0,'#04070F'],[1,'#141C33']])
+    + rg(p+'flood','50%','50%','50%',[[0,'#FFFFFF',1],[.15,'#F4F7FF',.8],[1,'#B9C8FF',0]])
+    + lg(p+'stand',0,0,0,1,[[0,'#1A2236'],[1,'#33405E']])
+    + lg(p+'pitch',0,0,0,1,[[0,'#24683A'],[1,'#3E9A52']])
+    + rg(p+'ball','38%','32%','70%',[[0,'#FFFFFF'],[.6,'#E4E6EA'],[1,'#8D939C']]);
+  var b = '<rect width="800" height="450" fill="url(#'+p+'sky)"/>';
+  [[120,40],[680,40]].forEach(function(f){ b += '<circle cx="'+f[0]+'" cy="'+f[1]+'" r="170" fill="url(#'+p+'flood)" opacity=".55"/><rect x="'+(f[0]-26)+'" y="'+(f[1]-10)+'" width="52" height="20" fill="#E9EEFF"/><path d="M'+f[0]+' '+(f[1]+10)+' V200" stroke="#0B1020" stroke-width="5"/>'; });
+  b += '<path d="M0 120 L800 120 L800 250 L0 250Z" fill="url(#'+p+'stand)"/>';
+  var cc = ['#C8283C','#1F4FA0','#F2F2F2','#E8C547','#C8283C','#1F4FA0'];
+  for (var i=0;i<900;i++){ var x = R()*800, y = 128+R()*118; b += '<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+(1.2+R()*1.6).toFixed(1)+'" fill="'+cc[i%6]+'" opacity="'+(.35+R()*.5).toFixed(2)+'"/>'; }
+  b += '<rect x="0" y="244" width="800" height="10" fill="#0B1020"/><path d="M0 450 L0 260 L800 260 L800 450Z" fill="url(#'+p+'pitch)"/>';
+  for (var k=0;k<8;k++){ var x1 = k*100; b += '<path d="M'+x1+' 260 L'+(x1+50)+' 260 L'+((x1+50-400)*1.9+400)+' 450 L'+((x1-400)*1.9+400)+' 450Z" fill="#000" opacity=".07"/>'; }
+  b += '<ellipse cx="400" cy="330" rx="150" ry="32" fill="none" stroke="#fff" stroke-width="3" opacity=".75"/><path d="M400 260 V450" stroke="#fff" stroke-width="3" opacity=".75"/><path d="M0 262 H800" stroke="#fff" stroke-width="3" opacity=".6"/>';
+  b += '<ellipse cx="585" cy="428" rx="50" ry="10" fill="#000" opacity=".45" filter="url(#vs-b4)"/><circle cx="580" cy="390" r="38" fill="url(#'+p+'ball)"/>'
+    + '<path d="M580 372 L594 382 L589 398 L571 398 L566 382Z" fill="#1E2430"/><path d="M548 380 L557 372 L566 382 M594 382 L606 372 L614 386 M571 398 L566 414 M589 398 L596 414" stroke="#1E2430" stroke-width="3" fill="none"/><path d="M552 400 Q560 418 578 424" stroke="#1E2430" stroke-width="3" fill="none" opacity=".5"/>';
+  return wrap(d,b);
+};
+
+S.bahamas = function(p){
+  var d = lg(p+'deep',0,0,1,1,[[0,'#8BE3D8'],[.4,'#2BB3BE'],[.75,'#127F99'],[1,'#0A4F72']])
+    + lg(p+'sand',0,0,1,1,[[0,'#FFF5DC'],[1,'#EBD7A6']])
+    + lg(p+'hull',0,0,0,1,[[0,'#FFFFFF'],[1,'#C9D2D8']]);
+  var b = '<rect width="800" height="450" fill="url(#'+p+'deep)"/>'
+    + '<path d="M-20 60 Q200 20 380 120 T820 160 V-20 H-20Z" fill="#C8F4EA" opacity=".8" filter="url(#vs-b10)"/>'
+    + '<path d="M-20 40 Q190 10 360 90 T820 120 V-20 H-20Z" fill="url(#'+p+'sand)"/>'
+    + '<path d="M-20 40 Q190 10 360 90 T820 120" stroke="#fff" stroke-width="5" fill="none" opacity=".7" filter="url(#vs-b2)"/>'
+    + '<ellipse cx="170" cy="280" rx="90" ry="40" fill="#0D5E6E" opacity=".45" filter="url(#vs-b10)"/><ellipse cx="660" cy="360" rx="120" ry="45" fill="#0A4F62" opacity=".45" filter="url(#vs-b10)"/><ellipse cx="300" cy="400" rx="60" ry="25" fill="#0D5E6E" opacity=".4" filter="url(#vs-b10)"/>';
+  for (var i=0;i<14;i++){ b += '<path d="M'+(i*70-40)+' '+(200+i*8)+' q35 -8 70 0" stroke="#E6FFFB" stroke-width="2" fill="none" opacity=".18"/>'; }
+  b += '<g transform="translate(470 250) rotate(-28)"><path d="M-190 0 L-20 -22 M-190 0 L-20 22" stroke="#fff" stroke-width="10" opacity=".35" filter="url(#vs-b4)"/><path d="M-260 0 L-20 -30 M-260 0 L-20 30" stroke="#fff" stroke-width="4" opacity=".25" filter="url(#vs-b2)"/>'
+    + '<ellipse cx="6" cy="8" rx="58" ry="20" fill="#053A4A" opacity=".35" filter="url(#vs-b4)"/><path d="M-50 -16 L40 -16 Q70 0 40 16 L-50 16Z" fill="url(#'+p+'hull)"/><rect x="-20" y="-10" width="28" height="20" rx="3" fill="#24394A"/><rect x="-14" y="-7" width="12" height="14" fill="#7FB9CF" opacity=".8"/><path d="M-50 -16 L40 -16" stroke="#B3203A" stroke-width="3"/></g>';
+  return wrap(d,b);
+};
+
+S.tourism = function(p){
+  var d = lg(p+'sky',0,0,0,1,[[0,'#3C5C9A'],[.5,'#E98A6B'],[1,'#F9D18B']])
+    + rg(p+'sun','50%','50%','50%',[[0,'#FFF1C9',1],[.3,'#FFC981',.7],[1,'#FF9D6A',0]])
+    + lg(p+'sea',0,0,0,1,[[0,'#C7798A'],[.3,'#4C6F9A'],[1,'#1B3B5F']])
+    + lg(p+'sand',0,0,0,1,[[0,'#C8916A'],[1,'#7A4E36']])
+    + lg(p+'mtn',0,0,0,1,[[0,'#6E6491'],[1,'#8C7799']]);
+  var b = '<rect width="800" height="450" fill="url(#'+p+'sky)"/><circle cx="430" cy="250" r="220" fill="url(#'+p+'sun)"/><circle cx="430" cy="250" r="44" fill="#FFF0CC"/>'
+    + '<path d="M0 255 Q120 200 240 225 T470 215 T700 200 L800 220 V262 H0Z" fill="url(#'+p+'mtn)" opacity=".8"/>'
+    + '<rect y="258" width="800" height="120" fill="url(#'+p+'sea)"/>'
+    + '<path d="M360 262 L500 262 L470 375 L390 375Z" fill="#FFD9A0" opacity=".35" filter="url(#vs-b10)"/>';
+  for (var i=0;i<18;i++){ b += '<path d="M'+(380+((i*37)%80))+' '+(268+i*6)+' h'+(30+(i%5)*12)+'" stroke="#FFE7B8" stroke-width="2" opacity=".6"/>'; }
+  b += '<path d="M0 360 Q300 330 800 372 V450 H0Z" fill="url(#'+p+'sand)"/><path d="M0 360 Q300 330 800 372" stroke="#FFE3C2" stroke-width="3" fill="none" opacity=".5" filter="url(#vs-b2)"/>'
+    + palm(110,450,300,'#1A1424',40) + palm(200,450,230,'#1F1829',-20) + palm(720,450,260,'#1A1424',-35)
+    + '<path d="M560 420 L580 340" stroke="#2A1E2C" stroke-width="4"/><path d="M520 345 Q580 300 640 345Z" fill="#2A1E2C"/><rect x="590" y="410" width="80" height="8" fill="#2A1E2C"/>';
+  return wrap(d,b);
+};
+
+S.drum = function(p){
+  var d = rg(p+'bg','50%','40%','75%',[[0,'#4A2A15'],[.6,'#1E100A'],[1,'#090404']])
+    + lg(p+'cone',0,0,0,1,[[0,'#FFE3B0',.35],[1,'#FFE3B0',0]])
+    + lg(p+'wood',0,0,1,0,[[0,'#3A1F0E'],[.25,'#8A5427'],[.45,'#C0803F'],[.6,'#93592A'],[1,'#2E180B']])
+    + lg(p+'skin',0,0,1,1,[[0,'#F6E5C0'],[.6,'#D9B983'],[1,'#B38C55']])
+    + rg(p+'floor','50%','50%','50%',[[0,'#B5652A',.55],[1,'#B5652A',0]]);
+  var b = '<rect width="800" height="450" fill="url(#'+p+'bg)"/><path d="M330 -10 L470 -10 L640 450 L160 450Z" fill="url(#'+p+'cone)" filter="url(#vs-b10)"/>'
+    + '<ellipse cx="400" cy="400" rx="260" ry="50" fill="url(#'+p+'floor)"/><ellipse cx="410" cy="402" rx="120" ry="18" fill="#000" opacity=".55" filter="url(#vs-b4)"/>'
+    + '<path d="M300 130 L500 130 L476 395 L324 395Z" fill="url(#'+p+'wood)"/>';
+  for (var i=1;i<8;i++){ var xt = 300+i*25, xb = 324+i*19; b += '<path d="M'+xt+' 130 L'+xb+' 395" stroke="#1E0F06" stroke-width="2" opacity=".55"/>'; }
+  [175,255,345].forEach(function(y){ var k=(y-130)/265, l = 300+24*k, r = 500-24*k; b += '<path d="M'+l.toFixed(1)+' '+y+' L'+r.toFixed(1)+' '+y+'" stroke="#2A2A2A" stroke-width="9"/><path d="M'+l.toFixed(1)+' '+(y-3)+' L'+r.toFixed(1)+' '+(y-3)+'" stroke="#9AA0A6" stroke-width="2" opacity=".6"/>'; });
+  var z = 'M304 140'; for (var j=0;j<10;j++){ z += ' L'+(310+j*20)+' '+(j%2?140:185); } b += '<path d="'+z+'" stroke="#E7D3A6" stroke-width="3" fill="none" opacity=".85"/>';
+  b += '<ellipse cx="400" cy="130" rx="102" ry="24" fill="url(#'+p+'skin)"/><ellipse cx="400" cy="130" rx="102" ry="24" fill="none" stroke="#3A1F0E" stroke-width="5"/><ellipse cx="380" cy="124" rx="40" ry="8" fill="#fff" opacity=".25" filter="url(#vs-b4)"/>'
+    + '<rect x="370" y="372" width="60" height="10" rx="5" fill="#5FD4FF"/><rect x="360" y="366" width="80" height="22" rx="11" fill="#5FD4FF" opacity=".55" filter="url(#vs-b10)"/>';
+  [60,100,140].forEach(function(r,i){ b += '<path d="M'+(520+i*6)+' '+(240-r*0.6)+' Q'+(520+r)+' 240 '+(520+i*6)+' '+(240+r*0.6)+'" stroke="#FFCF8A" stroke-width="3" fill="none" opacity="'+(0.6-i*0.15)+'" stroke-linecap="round"/><path d="M'+(280-i*6)+' '+(240-r*0.6)+' Q'+(280-r)+' 240 '+(280-i*6)+' '+(240+r*0.6)+'" stroke="#FFCF8A" stroke-width="3" fill="none" opacity="'+(0.6-i*0.15)+'" stroke-linecap="round"/>'; });
+  return wrap(d,b);
+};
+
+S.drought = function(p){
+  var R = rnd(3), d = lg(p+'sky',0,0,0,1,[[0,'#E9C27F'],[.6,'#F6DFAE'],[1,'#F9E9C6']])
+    + rg(p+'sun','50%','50%','50%',[[0,'#FFFDF2',1],[.2,'#FFF2C4',.9],[1,'#FFD27A',0]])
+    + lg(p+'ground',0,0,0,1,[[0,'#C9A06A'],[.4,'#B4854E'],[1,'#7D5530']]);
+  var b = '<rect width="800" height="450" fill="url(#'+p+'sky)"/><circle cx="600" cy="90" r="230" fill="url(#'+p+'sun)"/>'
+    + '<path d="M0 205 Q200 190 400 200 T800 195 V230 H0Z" fill="#A99377" opacity=".6" filter="url(#vs-b4)"/>'
+    + '<rect y="210" width="800" height="240" fill="url(#'+p+'ground)"/>';
+  for (var r=0;r<9;r++){ var y = 215 + Math.pow(r/9,1.8)*235, step = 30 + r*14;
+    for (var x=-20; x<820; x+= step){ var jx = x + (R()-0.5)*step*0.5, h = 6 + r*4;
+      b += '<path d="M'+jx.toFixed(0)+' '+y.toFixed(0)+' l'+((R()-.5)*step*0.4).toFixed(0)+' '+h.toFixed(0)+' l'+((R()-.5)*step*0.3).toFixed(0)+' '+(h*0.9).toFixed(0)+'" stroke="#5C3A1C" stroke-width="'+(0.6+r*0.35).toFixed(1)+'" fill="none" opacity=".75"/>';
+      b += '<path d="M'+jx.toFixed(0)+' '+y.toFixed(0)+' h'+step.toFixed(0)+'" stroke="#5C3A1C" stroke-width="'+(0.5+r*0.3).toFixed(1)+'" opacity=".6"/>';
+    }
+  }
+  b += '<path d="M120 300 Q100 230 150 200 M150 200 Q120 215 105 250 M150 200 Q175 230 168 262" stroke="#7C6A3C" stroke-width="4" fill="none" opacity=".8"/>'
+    + '<ellipse cx="420" cy="398" rx="40" ry="8" fill="#3A2412" opacity=".45" filter="url(#vs-b2)"/><path d="M420 398 Q418 360 424 340" stroke="#3E7A34" stroke-width="5" fill="none"/>'
+    + '<path d="M423 352 Q396 330 380 338 Q398 360 423 352Z" fill="#5BA548"/><path d="M424 344 Q450 316 470 324 Q452 350 424 344Z" fill="#6DBA56"/><path d="M425 345 Q446 330 462 328" stroke="#A8E08C" stroke-width="1.5" fill="none"/>';
+  return wrap(d,b);
+};
+
+S.plantain = function(p){
+  var d = lg(p+'bg',0,0,0,1,[[0,'#2C1E14'],[1,'#5A3D25']])
+    + lg(p+'table',0,0,0,1,[[0,'#9C6A3A'],[1,'#5E3A1C']])
+    + lg(p+'pg',0,0,1,0,[[0,'#4F6B1E'],[.35,'#8EA83A'],[.7,'#C9B640'],[1,'#7B6A20']])
+    + lg(p+'py',0,0,1,0,[[0,'#8A6A16'],[.4,'#E2BE45'],[.75,'#F2D36A'],[1,'#A07E22']])
+    + lg(p+'light',0,0,1,1,[[0,'#FFE6B0',.4],[1,'#FFE6B0',0]]);
+  var b = '<rect width="800" height="450" fill="url(#'+p+'bg)"/>';
+  for (var s=0;s<10;s++){ b += '<path d="M'+(s*80)+' 0 h80 v54 q-40 18 -80 0Z" fill="'+(s%2?'#F1E7D6':'#B3203A')+'"/>'; }
+  b += '<rect y="54" width="800" height="14" fill="#000" opacity=".35" filter="url(#vs-b4)"/><path d="M0 70 L520 70 L800 300 L800 70Z" fill="url(#'+p+'light)"/>'
+    + '<path d="M0 330 L800 300 V450 H0Z" fill="url(#'+p+'table)"/>';
+  for (var g=0; g<12; g++){ b += '<path d="M0 '+(340+g*10)+' L800 '+(310+g*12)+'" stroke="#3E2510" stroke-width="1" opacity=".35"/>'; }
+  function bunch(cx, cy, n, grad, rot){
+    var o = '<g transform="translate('+cx+' '+cy+') rotate('+rot+')"><path d="M-10 -150 Q0 -170 14 -150 L10 -95 H-6Z" fill="#5B4520"/>';
+    for (var i=0;i<n;i++){ var a = (i-(n-1)/2)*11; o += '<g transform="rotate('+a+' 0 -100)"><path d="M-12 -100 Q-46 -10 -6 70 Q4 80 12 72 Q-14 -6 12 -100Z" fill="url(#'+grad+')" stroke="#3A2C10" stroke-width="1.5"/><path d="M-4 66 l6 8" stroke="#2B1E0A" stroke-width="4" stroke-linecap="round"/></g>'; }
+    return o + '</g>';
+  }
+  b += '<ellipse cx="260" cy="400" rx="170" ry="22" fill="#000" opacity=".4" filter="url(#vs-b10)"/>' + bunch(200,300,7,p+'pg',-8) + bunch(340,312,6,p+'py',10);
+  b += '<g transform="translate(560 200) rotate(-4)"><rect x="-6" y="-6" width="182" height="122" rx="6" fill="#7A4E26"/><rect width="170" height="110" fill="#1F2422"/><text x="85" y="52" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="34" fill="#F4F1E8">2,10 €</text><text x="85" y="84" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="20" fill="#E8E2C8" opacity=".85">le kilo</text><path d="M30 95 h110" stroke="#F4F1E8" stroke-width="1.5" opacity=".4"/></g>';
+  return wrap(d,b);
+};
+
+S.vote = function(p){
+  var d = lg(p+'wall',0,0,1,0,[[0,'#E7DAC2'],[1,'#BFA986']])
+    + lg(p+'win',0,0,0,1,[[0,'#3D5486'],[.6,'#D88B6E'],[1,'#F2C08A']])
+    + lg(p+'shaft',0,0,1,1,[[0,'#FFE9C4',.45],[1,'#FFE9C4',0]])
+    + lg(p+'table',0,0,0,1,[[0,'#7B5536'],[1,'#4B3220']])
+    + lg(p+'box',0,0,1,0,[[0,'#FFFFFF',.35],[.5,'#FFFFFF',.12],[1,'#FFFFFF',.3]]);
+  var b = '<rect width="800" height="450" fill="url(#'+p+'wall)"/><rect x="470" y="40" width="250" height="210" fill="url(#'+p+'win)"/>'
+    + plane(600,120,0.9,'#1C2240',-8)
+    + '<path d="M470 145 H720 M595 40 V250" stroke="#E7DAC2" stroke-width="10"/><rect x="462" y="32" width="266" height="226" fill="none" stroke="#8C7556" stroke-width="10"/>'
+    + '<path d="M470 250 L720 250 L560 450 L200 450Z" fill="url(#'+p+'shaft)" filter="url(#vs-b10)"/>'
+    + '<path d="M0 330 L800 300 V450 H0Z" fill="url(#'+p+'table)"/>'
+    + '<ellipse cx="280" cy="380" rx="150" ry="18" fill="#000" opacity=".35" filter="url(#vs-b10)"/>'
+    + '<g transform="rotate(-6 250 210)"><rect x="210" y="150" width="70" height="52" fill="#F5F0E6" stroke="#9E9580"/><path d="M210 150 L245 178 L280 150" stroke="#9E9580" fill="none"/></g>'
+    + '<rect x="150" y="215" width="250" height="160" fill="#DCE8F0" opacity=".35"/><rect x="150" y="215" width="250" height="160" fill="url(#'+p+'box)" stroke="#F0F6FA" stroke-width="3"/>'
+    + '<rect x="150" y="205" width="250" height="14" fill="#1D5C8C"/><rect x="235" y="209" width="80" height="5" fill="#0B2438"/>'
+    + '<g opacity=".8"><rect x="180" y="320" width="64" height="44" fill="#F5F0E6" transform="rotate(12 212 342)"/><rect x="250" y="330" width="64" height="40" fill="#EFE6D2" transform="rotate(-8 282 350)"/><rect x="300" y="315" width="60" height="44" fill="#F5F0E6" transform="rotate(20 330 337)"/></g>'
+    + '<path d="M158 222 L170 360" stroke="#fff" stroke-width="4" opacity=".45"/>';
+  return wrap(d,b);
+};
+
+S.rally = function(p){
+  var R = rnd(13), d = lg(p+'sky',0,0,0,1,[[0,'#1A2A4E'],[.55,'#7A4E6A'],[1,'#E0855A']])
+    + rg(p+'spot','50%','50%','50%',[[0,'#FFF5D6',.9],[1,'#FFF5D6',0]])
+    + lg(p+'beam',0,0,0,1,[[0,'#FFF0C8',.3],[1,'#FFF0C8',0]]);
+  var b = '<rect width="800" height="450" fill="url(#'+p+'sky)"/>'
+    + '<path d="M0 260 Q200 200 400 230 T800 220 V300 H0Z" fill="#2A2440" opacity=".8"/>' + palm(60,290,140,'#1A1630',20) + palm(760,290,120,'#1A1630',-15)
+    + '<rect x="230" y="150" width="340" height="150" fill="#14111F"/><rect x="230" y="140" width="340" height="12" fill="#22203A"/>';
+  [[260,140,'#FFD27A'],[400,140,'#FFFFFF'],[540,140,'#7FD1FF']].forEach(function(s){ b += '<path d="M'+s[0]+' '+s[1]+' L'+(s[0]-120)+' 450 L'+(s[0]+120)+' 450Z" fill="'+s[2]+'" opacity=".12" filter="url(#vs-b10)"/><circle cx="'+s[0]+'" cy="'+s[1]+'" r="30" fill="url(#'+p+'spot)"/>'; });
+  b += '<rect x="370" y="210" width="60" height="90" fill="#0E0C18"/><path d="M400 210 V185" stroke="#0E0C18" stroke-width="4"/><circle cx="400" cy="182" r="6" fill="#0E0C18"/><circle cx="400" cy="160" r="14" fill="#0E0C18"/><path d="M382 210 Q400 172 418 210Z" fill="#0E0C18"/>';
+  for (var row=0; row<4; row++){ var y = 330 + row*36, s = 0.8 + row*0.35;
+    for (var x=-20; x<840; x += 34*s){ var xx = x + (R()-0.5)*14, hh = y + (R()-.5)*10;
+      b += '<circle cx="'+xx.toFixed(1)+'" cy="'+hh.toFixed(1)+'" r="'+(11*s).toFixed(1)+'" fill="#0B0914"/><path d="M'+(xx-20*s).toFixed(1)+' 470 Q'+xx.toFixed(1)+' '+(hh+4*s).toFixed(1)+' '+(xx+20*s).toFixed(1)+' 470Z" fill="#0B0914"/>';
+      if (row<2 && R()>.55) b += '<circle cx="'+xx.toFixed(1)+'" cy="'+(hh-1).toFixed(1)+'" r="'+(11*s).toFixed(1)+'" fill="none" stroke="#F2A86A" stroke-width="1.2" opacity=".5"/>';
+      if (R()>.85) b += '<path d="M'+(xx+8*s).toFixed(1)+' '+(hh+6).toFixed(1)+' L'+(xx+16*s).toFixed(1)+' '+(hh-34*s).toFixed(1)+'" stroke="#0B0914" stroke-width="'+(6*s).toFixed(1)+'" stroke-linecap="round"/>';
+    }
+  }
+  return wrap(d,b);
+};
+
+S.airport = function(p){
+  var d = lg(p+'sky',0,0,0,1,[[0,'#1E2F57'],[.55,'#B0697A'],[.85,'#F2A46B'],[1,'#FCD49A']])
+    + rg(p+'sun','50%','50%','50%',[[0,'#FFF4D6',1],[.3,'#FFD08A',.6],[1,'#FFA060',0]])
+    + lg(p+'run',0,0,0,1,[[0,'#4B4A55'],[1,'#26252C']]);
+  var b = '<rect width="800" height="450" fill="url(#'+p+'sky)"/><circle cx="250" cy="300" r="200" fill="url(#'+p+'sun)"/>'
+    + '<path d="M0 290 L800 290 V450 H0Z" fill="#1A1820"/><path d="M330 290 L470 290 L800 450 L0 450Z" fill="url(#'+p+'run)"/>';
+  for (var i=0;i<8;i++){ var t = i/8, y = 292 + Math.pow(t,1.7)*158; b += '<path d="M'+(400-2-t*6)+' '+y.toFixed(0)+' h'+(4+t*12)+'" stroke="#EDEDED" stroke-width="'+(1+t*5).toFixed(1)+'"/>'; }
+  for (var j=0;j<10;j++){ var t2 = j/10, yy = 292 + Math.pow(t2,1.7)*158, dx = 70 + t2*330;
+    b += '<circle cx="'+(400-dx).toFixed(0)+'" cy="'+yy.toFixed(0)+'" r="'+(1.5+t2*4).toFixed(1)+'" fill="#FFD27A"/><circle cx="'+(400+dx).toFixed(0)+'" cy="'+yy.toFixed(0)+'" r="'+(1.5+t2*4).toFixed(1)+'" fill="#FFD27A"/><circle cx="'+(400+dx).toFixed(0)+'" cy="'+yy.toFixed(0)+'" r="'+(6+t2*10).toFixed(1)+'" fill="#FFD27A" opacity=".25" filter="url(#vs-b4)"/>'; }
+  b += '<rect x="640" y="170" width="22" height="120" fill="#141219"/><path d="M618 170 L684 170 L676 140 L626 140Z" fill="#141219"/><rect x="630" y="146" width="42" height="14" fill="#7FC6D9" opacity=".75"/><rect x="649" y="120" width="4" height="20" fill="#141219"/><circle cx="651" cy="118" r="3" fill="#FF4A4A"/>'
+    + plane(420,150,1.5,'#161422',-12) + '<circle cx="512" cy="133" r="4" fill="#FF5A5A"/><circle cx="512" cy="133" r="12" fill="#FF5A5A" opacity=".35" filter="url(#vs-b4)"/>';
+  return wrap(d,b);
+};
+
+S.tap = function(p){
+  var d = lg(p+'bg',0,0,1,1,[[0,'#26353D'],[1,'#0C1418']])
+    + lg(p+'chrome',0,0,0,1,[[0,'#F4F8FA'],[.25,'#9AA6AC'],[.5,'#E6EDF0'],[.75,'#5E6A70'],[1,'#B9C3C8']])
+    + lg(p+'chromev',0,0,1,0,[[0,'#5E6A70'],[.35,'#F4F8FA'],[.6,'#9AA6AC'],[1,'#3F4A50']])
+    + rg(p+'drop','35%','30%','70%',[[0,'#FFFFFF'],[.4,'#A8DDF0'],[1,'#3D8AA8']])
+    + lg(p+'glass',0,0,1,0,[[0,'#FFFFFF',.25],[.2,'#FFFFFF',.05],[.8,'#FFFFFF',.05],[1,'#FFFFFF',.2]]);
+  var b = '<rect width="800" height="450" fill="url(#'+p+'bg)"/><circle cx="420" cy="160" r="220" fill="#3E5560" opacity=".35" filter="url(#vs-b10)"/>'
+    + '<rect x="0" y="92" width="300" height="38" fill="url(#'+p+'chrome)"/><rect x="290" y="80" width="62" height="62" rx="10" fill="url(#'+p+'chromev)"/>'
+    + '<rect x="312" y="48" width="18" height="34" fill="url(#'+p+'chromev)"/><rect x="282" y="34" width="78" height="16" rx="8" fill="url(#'+p+'chrome)"/>'
+    + '<path d="M352 98 H430 Q470 98 470 138 V178 H440 V142 Q440 128 426 128 H352Z" fill="url(#'+p+'chrome)"/><rect x="436" y="176" width="38" height="12" rx="3" fill="url(#'+p+'chromev)"/>'
+    + '<path d="M455 210 Q444 228 446 238 Q448 250 455 250 Q462 250 464 238 Q466 228 455 210Z" fill="url(#'+p+'drop)"/><ellipse cx="451" cy="232" rx="2.5" ry="5" fill="#fff" opacity=".9"/>'
+    + '<ellipse cx="455" cy="420" rx="110" ry="14" fill="#000" opacity=".5" filter="url(#vs-b4)"/>'
+    + '<path d="M380 290 L530 290 L515 420 L395 420Z" fill="url(#'+p+'glass)" stroke="#DDE9EE" stroke-width="2.5" stroke-opacity=".7"/><ellipse cx="455" cy="290" rx="75" ry="8" fill="none" stroke="#DDE9EE" stroke-width="2" opacity=".6"/>'
+    + '<path d="M395 300 L408 410" stroke="#fff" stroke-width="5" opacity=".35"/><ellipse cx="455" cy="418" rx="58" ry="5" fill="#9FD3E6" opacity=".25"/>'
+    + '<rect y="420" width="800" height="30" fill="#0A1013"/>';
+  return wrap(d,b);
+};
+
+S.cepal = function(p){
+  var d = lg(p+'sky',0,0,0,1,[[0,'#6FA4C8'],[.6,'#F1C08C'],[1,'#F8D9A6']])
+    + rg(p+'sun','50%','50%','50%',[[0,'#FFF6DA',1],[.3,'#FFE0A0',.6],[1,'#FFC070',0]])
+    + lg(p+'sea',0,0,0,1,[[0,'#7A8FA6'],[.2,'#2E6C8A'],[1,'#0E3046']])
+    + lg(p+'f1',0,0,0,1,[[0,'#3E6B4A'],[1,'#22432F']])
+    + lg(p+'f2',0,0,0,1,[[0,'#6E8E6A'],[1,'#56775A']]);
+  var b = '<rect width="800" height="450" fill="url(#'+p+'sky)"/><circle cx="520" cy="230" r="200" fill="url(#'+p+'sun)"/><circle cx="520" cy="232" r="30" fill="#FFF3D0"/>'
+    + '<rect y="240" width="800" height="210" fill="url(#'+p+'sea)"/><path d="M490 244 L550 244 L590 450 L450 450Z" fill="#FFE2A8" opacity=".3" filter="url(#vs-b10)"/>';
+  for (var i=0;i<16;i++){ b += '<path d="M'+(480+((i*29)%70))+' '+(250+i*12)+' h'+(20+(i%4)*14)+'" stroke="#FFE6B6" stroke-width="2" opacity=".55"/>'; }
+  b += '<g fill="#2A3340" opacity=".85"><rect x="640" y="200" width="70" height="10"/><rect x="646" y="210" width="5" height="34"/><rect x="700" y="210" width="5" height="34"/><rect x="672" y="210" width="5" height="34"/><path d="M660 200 L668 150 L676 200Z"/><rect x="690" y="186" width="16" height="14"/></g><path d="M668 150 q-30 -20 -60 -6" stroke="#5A6470" stroke-width="5" fill="none" opacity=".35" filter="url(#vs-b4)"/>'
+    + '<path d="M0 200 Q80 170 160 190 T320 205 L360 250 H0Z" fill="url(#'+p+'f2)"/>'
+    + '<path d="M0 450 V250 Q60 220 120 240 Q180 210 240 250 Q300 270 340 330 Q300 400 260 450Z" fill="url(#'+p+'f1)"/>';
+  var R = rnd(17); for (var k=0;k<40;k++){ var x = R()*300, y = 260 + R()*180; b += '<circle cx="'+x.toFixed(0)+'" cy="'+y.toFixed(0)+'" r="'+(8+R()*14).toFixed(0)+'" fill="'+(R()>.5?'#2B5238':'#4F7F57')+'" opacity=".7"/>'; }
+  b += '<path d="M120 450 Q160 380 140 330 Q130 300 170 270" stroke="#7FB6C9" stroke-width="7" fill="none" opacity=".8"/>';
+  return wrap(d,b);
+};
+
+S.flight = function(p){
+  var R = rnd(23), d = lg(p+'sky',0,0,0,1,[[0,'#2F4278'],[.5,'#C97E86'],[.8,'#F4AE6A'],[1,'#FBD9A0']])
+    + rg(p+'sun','50%','50%','50%',[[0,'#FFF4D8',1],[.25,'#FFD49A',.6],[1,'#FFA86A',0]]);
+  var b = '<rect width="800" height="450" fill="url(#'+p+'sky)"/><circle cx="170" cy="300" r="230" fill="url(#'+p+'sun)"/>'
+    + '<path d="M80 340 Q260 300 420 330" stroke="#fff" stroke-width="3" opacity=".25"/>';
+  for (var i=0;i<60;i++){ var x = R()*900-50, y = 320 + R()*140, r = 40 + R()*70; b += '<ellipse cx="'+x.toFixed(0)+'" cy="'+y.toFixed(0)+'" rx="'+r.toFixed(0)+'" ry="'+(r*0.45).toFixed(0)+'" fill="'+(R()>.5?'#F7D7C4':'#E8B5A8')+'" opacity=".9" filter="url(#vs-b10)"/>'; }
+  for (var j=0;j<30;j++){ var x2 = R()*900-50, y2 = 345 + R()*110, r2 = 30 + R()*50; b += '<ellipse cx="'+x2.toFixed(0)+'" cy="'+y2.toFixed(0)+'" rx="'+r2.toFixed(0)+'" ry="'+(r2*0.4).toFixed(0)+'" fill="#FFF0E2" opacity=".85" filter="url(#vs-b4)"/>'; }
+  b += '<path d="M-20 238 Q250 205 470 175" stroke="#FFFFFF" stroke-width="4" fill="none" opacity=".55" filter="url(#vs-b2)"/>' + plane(540,165,1.6,'#22233A',-9) + '<circle cx="640" cy="148" r="3" fill="#FF6060"/>';
+  return wrap(d,b);
+};
+
+S.pinkrun = function(p){
+  var d = lg(p+'sky',0,0,0,1,[[0,'#F4B98F'],[1,'#FBE4CB']])
+    + lg(p+'road',0,0,0,1,[[0,'#9A8A86'],[1,'#5B4E4C']])
+    + lg(p+'b1',0,0,0,1,[[0,'#E9C9A6'],[1,'#C9A584']])
+    + lg(p+'b2',0,0,0,1,[[0,'#D9A9A0'],[1,'#B98B83']]);
+  var b = '<rect width="800" height="450" fill="url(#'+p+'sky)"/>';
+  [[0,90,170,'b1'],[170,120,140,'b2'],[310,100,120,'b1'],[490,110,130,'b2'],[620,80,180,'b1']].forEach(function(t,i){
+    b += '<rect x="'+t[0]+'" y="'+t[1]+'" width="'+t[2]+'" height="'+(300-t[1])+'" fill="url(#'+p+t[3]+')"/>';
+    for (var k=0;k<Math.floor(t[2]/40);k++){ var wx = t[0]+12+k*40; b += '<rect x="'+wx+'" y="'+(t[1]+24)+'" width="20" height="40" fill="#5E4A44" opacity=".55"/><rect x="'+wx+'" y="'+(t[1]+96)+'" width="20" height="40" fill="#5E4A44" opacity=".55"/><path d="M'+(wx-6)+' '+(t[1]+70)+' h32" stroke="#3E302C" stroke-width="3"/>'; }
+    b += '<path d="M'+t[0]+' '+(t[1]+70)+' h'+t[2]+'" stroke="#3E302C" stroke-width="2" opacity=".6"/><path d="M'+t[0]+' '+(t[1]+78)+' h'+t[2]+'" stroke="#3E302C" stroke-width="1" stroke-dasharray="3 5" opacity=".6"/>';
+  });
+  b += '<path d="M0 290 H800 V450 H0Z" fill="url(#'+p+'road)"/><path d="M0 300 H800" stroke="#E9DCCF" stroke-width="4" opacity=".6"/>'
+    + '<path d="M0 290 H800 V330 H0Z" fill="#FFD7B0" opacity=".25" filter="url(#vs-b10)"/>';
+  var cols = ['#E24C83','#F07AA6','#D63A72','#F59CBC','#E86393'];
+  var pos = [[140,330,.9],[230,338,1],[330,326,.85],[470,345,1.1],[600,332,.95],[700,340,1.05],[400,380,1.4],[560,395,1.5],[250,400,1.45]];
+  pos.forEach(function(q,i){ b += '<ellipse cx="'+(q[0]+4)+'" cy="'+(q[1]+8)+'" rx="'+(22*q[2])+'" ry="4" fill="#000" opacity=".25" filter="url(#vs-b2)"/><g filter="url(#vs-b1)">'+runner(q[0],q[1],q[2],cols[i%5],i%2)+'</g>'; });
+  b += '<g opacity=".9"><circle cx="90" cy="150" r="20" fill="#F07AA6"/><path d="M90 170 Q96 220 88 290" stroke="#fff" stroke-width="1" fill="none"/><circle cx="740" cy="130" r="18" fill="#E24C83"/><path d="M740 148 Q735 210 742 290" stroke="#fff" stroke-width="1" fill="none"/></g>';
+  return wrap(d,b);
+};
+
+S.fires = function(p){
+  var d = lg(p+'sky',0,0,0,1,[[0,'#070B16'],[1,'#1A1E2E']])
+    + rg(p+'glow','50%','50%','50%',[[0,'#FFB35A',.75],[.5,'#FF6A2A',.25],[1,'#FF6A2A',0]])
+    + rg(p+'fl','50%','80%','70%',[[0,'#FFF6C8'],[.35,'#FFC24A'],[.7,'#FF6A1E'],[1,'#B0281A']])
+    + lg(p+'street',0,0,0,1,[[0,'#2A2730'],[1,'#121118']]);
+  var b = '<rect width="800" height="450" fill="url(#'+p+'sky)"/>';
+  [[0,120,160],[160,90,120],[280,140,140],[560,100,130],[690,70,110]].forEach(function(t){ b += '<rect x="'+t[0]+'" y="'+t[1]+'" width="'+t[2]+'" height="'+(320-t[1])+'" fill="#0D0F18"/>'; for (var k=0;k<4;k++){ if((t[0]+k)%3) b += '<rect x="'+(t[0]+14+k*28)+'" y="'+(t[1]+30)+'" width="12" height="18" fill="#E8B76A" opacity=".55"/>'; } });
+  b += '<path d="M0 320 H800 V450 H0Z" fill="url(#'+p+'street)"/><circle cx="420" cy="270" r="260" fill="url(#'+p+'glow)"/>';
+  for (var i=0;i<8;i++){ b += '<circle cx="'+(400+Math.sin(i)*40+i*12)+'" cy="'+(160-i*22)+'" r="'+(30+i*8)+'" fill="#3C3A44" opacity="'+(0.45-i*0.04).toFixed(2)+'" filter="url(#vs-b10)"/>'; }
+  b += '<path d="M330 240 Q340 150 390 120 Q380 170 410 180 Q420 110 460 80 Q450 150 480 170 Q500 140 495 120 Q540 180 510 250Z" fill="url(#'+p+'fl)" filter="url(#vs-b2)"/>'
+    + '<path d="M370 245 Q380 190 410 175 Q412 205 430 210 Q440 170 460 155 Q470 200 465 245Z" fill="#FFF0B0" opacity=".85" filter="url(#vs-b2)"/>'
+    + '<path d="M320 240 L520 240 L505 345 L335 345Z" fill="#244534"/><path d="M314 232 H526 V246 H314Z" fill="#1A3326"/><path d="M370 255 V335 M420 255 V335 M470 255 V335" stroke="#16291F" stroke-width="6"/>'
+    + '<path d="M320 240 L520 240 L505 345 L335 345Z" fill="#FF8A3A" opacity=".18"/><circle cx="350" cy="350" r="10" fill="#0A0A0E"/><circle cx="490" cy="350" r="10" fill="#0A0A0E"/>'
+    + '<ellipse cx="420" cy="380" rx="200" ry="22" fill="#FF8A3A" opacity=".3" filter="url(#vs-b10)"/>';
+  [[300,120],[520,90],[560,160],[260,190]].forEach(function(s){ b += '<circle cx="'+s[0]+'" cy="'+s[1]+'" r="2" fill="#FFD27A"/>'; });
+  return wrap(d,b);
+};
+
+return function(key){ uid++; return S[key] ? S[key]('s'+uid+key) : ''; };
+})();
+
+var ARTICLES=[{"id": "haiti-gros-morne", "r": ["ht"], "pays": "Haïti", "rub": "Sécurité", "date": "4 octobre 2026", "iso": "2026-10-05", "min": 4, "ill": "haiti", "cap": "Illustration : collines de l'Artibonite au crépuscule.", "title": "Haïti : à Gros-Morne, une attaque de gang fait au moins onze morts", "chapo": "Le secrétaire général de l'ONU a condamné l'attaque, survenue lundi dans l'Artibonite. Depuis janvier, au moins 5 700 personnes ont été tuées ou blessées dans les violences des gangs, selon les Nations unies.", "body": ["L'attaque a eu lieu lundi dans la troisième section communale de Gros-Morne, dans le département de l'Artibonite. Elle a fait au moins onze morts et plusieurs blessés. Parmi les victimes figurent quatre membres d'une même famille, pris dans les échanges de tirs alors qu'ils conduisaient une femme malade à l'hôpital. Trois membres présumés du gang Kokorat San Ras ont également été tués.", "D'après le maire par intérim de Gros-Morne, Hubert Cénéac, les violences ont éclaté après un affrontement entre ce gang et le contingent sri-lankais de la Force de suppression des gangs (GSF), dans la section voisine de Savane Longue. Les forces de sécurité cherchaient à dégager un tronçon de la route nationale qui relie le Nord-Ouest à l'Artibonite, où le gang avait installé un poste de contrôle pour racketter conducteurs et passagers.", "António Guterres a condamné l'attaque par la voix de son porte-parole, Stéphane Dujarric, qui y voit un nouveau rappel du prix payé par les Haïtiens vivant dans les zones contrôlées ou influencées par les groupes armés. L'ONU plaide pour le déploiement complet de la GSF en appui à la Police nationale d'Haïti, mais aussi pour une action sur les causes profondes de l'instabilité.", "Le bilan humain ne cesse de s'alourdir. Selon le Bureau des droits de l'homme de l'ONU, plus de 3 000 personnes ont été tuées entre janvier et juin. Vendredi, le Haut-Commissaire aux droits de l'homme a fait état d'au moins 5 700 personnes tuées ou blessées depuis le début de l'année. Nourriture, soins, soutien psychologique et aides financières d'urgence continuent d'être distribués, mais les besoins dépassent toujours les moyens disponibles.", "## Le mandat de la force prolongé", "Lundi, le Conseil de sécurité a prolongé de six mois le mandat de la GSF, qui devrait compter environ 5 500 personnes une fois pleinement déployée. Les États membres de l'Organisation des États américains ont eux aussi appelé à son renouvellement et à son déploiement total, alors qu'Haïti prépare des élections prévues en décembre.", "L'Église catholique s'alarme à son tour. Dans un communiqué, les évêques haïtiens décrivent une dégradation continue de la situation, marquée par l'avancée des groupes armés et la multiplication des enlèvements, et dénoncent une gouvernance incapable de protéger la population. Ils rappellent le massacre de Kenscoff, les 23 et 24 août, qui a fait au moins 47 morts selon les autorités."], "sources": [{"name": "Radio Télévision Caraïbes", "url": "https://www.radiotelevisioncaraibes.com/"}, {"name": "La 1ère", "url": "https://la1ere.franceinfo.fr/"}, {"name": "l'ONU", "url": ""}], "ai": false, "score": 0, "photo_ok": false, "photo_q": [], "place": "lead"}, {"id": "foot-hispaniola", "r": ["ht", "do"], "pays": "Hispaniola", "rub": "Sport", "date": "3 octobre 2026", "iso": "2026-10-05", "min": 3, "ill": "football", "cap": "Illustration : un stade sous les projecteurs.", "title": "Football : la République dominicaine ferme ses stades à la sélection haïtienne", "chapo": "Au lendemain de la large victoire d'Haïti (4-1) à Saint-Domingue, le ministre dominicain des Sports a interdit aux Grenadiers de jouer dans les installations du pays.", "body": ["Le « derby d'Hispaniola » s'est joué jeudi soir au stade olympique Félix Sánchez de Saint-Domingue, dans le cadre de la Ligue des nations de la Concacaf. C'était la première rencontre entre les deux voisins organisée en République dominicaine depuis 2013, et elle s'est déroulée sous un important dispositif policier.", "Avant le coup d'envoi, alors que le stade affichait complet, des supporters haïtiens ont tenté de forcer l'une des entrées. Le match puis la sortie du public se sont ensuite déroulés sans nouvel incident majeur.", "Sur la pelouse, Haïti s'est imposé nettement. Louicius Deedson a ouvert la marque, Wilson Isidor a signé un doublé et Yassin Fortuné a inscrit le quatrième but. Dorny Romero a sauvé l'honneur pour la sélection dominicaine.", "## Une phrase qui fâche", "Dès le lendemain, le ministre des Sports, Kelvin Cruz, a annoncé une interdiction totale pour la sélection haïtienne d'utiliser les installations sportives dominicaines. La polémique a été nourrie par une phrase de Wilson Isidor, filmé en train d'affirmer que l'île d'Hispaniola était haïtienne. Le président de la fédération dominicaine, José Deschamps, a jugé ces propos déplacés et annoncé son intention de saisir la FIFA et la Concacaf.", "L'épisode s'ajoute à des relations déjà tendues entre les deux pays qui se partagent l'île. En 2023, c'est Haïti qui avait demandé à sa fédération de ne plus jouer en République dominicaine, après la fermeture de la frontière décidée par le président Luis Abinader dans le conflit autour d'un canal sur la rivière Massacre."], "sources": [{"name": "AFP", "url": ""}, {"name": "Reuters", "url": ""}, {"name": "presse haïtienne", "url": ""}], "ai": false, "score": 0, "photo_ok": true, "photo_q": ["Estadio Olímpico Félix Sánchez", "football stadium Santo Domingo"], "place": "side"}, {"id": "grenade-elections", "r": ["gd"], "pays": "Grenade", "rub": "Politique", "date": "4 octobre 2026", "iso": "2026-10-05", "min": 2, "ill": "grenada", "cap": "Illustration : la baie de Saint-George's.", "title": "Grenade : le Parlement dissous, le pays entre en campagne", "chapo": "Le Premier ministre Dickon Mitchell a fait dissoudre le Parlement vendredi, ouvrant la voie à des élections générales.", "body": ["La dissolution a été prononcée vendredi 2 octobre. Il revient désormais à la gouverneure générale, Dame Cécile La Grenade, de publier le décret convoquant les électeurs aux urnes.", "Dickon Mitchell avait appelé les Grenadiens non encore inscrits sur les listes électorales à le faire avant vendredi. Une fois le Parlement dissous, plus aucune inscription complémentaire n'est possible.", "Le National Democratic Congress (NDC), au pouvoir, multiplie depuis plusieurs jours les petits rassemblements sur l'île principale. Un grand meeting était prévu dimanche à St. Mark pour lancer officiellement la campagne et présenter les candidats du parti.", "Le chef du gouvernement s'est dit confiant dans le bilan de ses quatre années de mandat. Selon lui, son équipe s'est préparée à ce rendez-vous tout au long de la législature et souhaite maintenant obtenir l'approbation des électeurs sur le travail accompli."], "sources": [{"name": "Radio Télévision Caraïbes", "url": "https://www.radiotelevisioncaraibes.com/"}], "ai": false, "score": 0, "photo_ok": true, "photo_q": ["St. George's Grenada harbour", "Grenada parliament building"], "place": "side"}, {"id": "bahamas-dea", "r": ["bs"], "pays": "Bahamas", "rub": "Diplomatie", "date": "4 octobre 2026", "iso": "2026-10-05", "min": 3, "ill": "bahamas", "cap": "Illustration : une vedette au-dessus des hauts-fonds bahaméens.", "title": "Bahamas : Philip Davis demande à Washington de « suivre la procédure »", "chapo": "Le Premier ministre bahaméen hausse le ton après des informations selon lesquelles des agents infiltrés de la DEA auraient opéré dans l'archipel sans l'accord des autorités.", "body": ["Pour Philip Davis, l'affaire est avant tout une question de procédure. Le Premier ministre a demandé aux États-Unis de respecter les règles établies pour toute opération de sécurité menée sur le sol bahaméen, alors que des agents infiltrés de l'agence antidrogue américaine auraient agi sans en informer Nassau ni obtenir son autorisation.", "Le différend s'est envenimé la semaine dernière lorsque l'ambassadeur des Bahamas aux États-Unis, Wendall Jones, a accusé des agents de la DEA d'agir hors de tout contrôle et de chercher à déstabiliser le gouvernement. Il a aussi demandé aux autorités américaines d'identifier un responsable politique bahaméen, désigné sous le nom de « Politician-1 », qui aurait rencontré un trafiquant au Parlement pour discuter d'acheminement de cocaïne vers les États-Unis.", "Côté américain, l'ambassadeur des États-Unis aux Bahamas a répondu que son pays ne pouvait plus tolérer l'afflux de drogue sur son territoire, tout en appelant à une coopération respectueuse entre les deux nations. Au sein du gouvernement bahaméen, Wayne Munroe a soutenu la protestation officielle et insisté sur la nécessité de coordonner les forces de l'ordre locales et étrangères.", "La coopération antidrogue entre les deux pays est ancienne : depuis 1982, le dispositif OPBAT associe le Pentagone, la DEA et les garde-côtes américains aux autorités des Bahamas et des îles Turques-et-Caïques. Le déploiement américain dans la région s'est récemment renforcé, comme en témoigne l'accord conclu avec [[rd-aeroport|la République dominicaine]]."], "sources": [{"name": "Radio Télévision Caraïbes", "url": "https://www.radiotelevisioncaraibes.com/"}, {"name": "ETV", "url": ""}, {"name": "ministère français de l'Europe et des Affaires étrangères", "url": ""}], "ai": false, "score": 0, "photo_ok": true, "photo_q": ["Nassau Bahamas harbour", "Bahamas aerial sea"], "place": "side"}, {"id": "jamaique-tourisme", "r": ["jm"], "pays": "Jamaïque", "rub": "Tourisme", "date": "3 octobre 2026", "iso": "2026-10-05", "min": 3, "ill": "tourism", "cap": "Illustration : coucher de soleil sur une plage jamaïcaine.", "title": "Tourisme : la Jamaïque gagne quatre places au classement du Forum économique mondial", "chapo": "L'île passe de la 82e à la 78e place sur 110 dans l'indice de développement du tourisme et des voyages, la meilleure progression des Amériques.", "body": ["Publié par le Forum économique mondial avec Zurich Insurance Group, l'indice de développement du tourisme et des voyages (TTDI) évalue les conditions d'un tourisme durable et résilient : infrastructures, connectivité, préparation numérique, sécurité, richesses naturelles et culturelles. Il ne mesure ni le nombre de visiteurs ni les recettes du secteur.", "Dans l'édition 2026, la Jamaïque est la seule économie de la région à gagner quatre rangs. Son score progresse de 2,3 % par rapport à 2024 et la place deux crans au-dessus de son classement de 2019. Le pays avait occupé la 76e place en 2015, la 69e en 2017, la 76e en 2019 puis la 82e en 2024.", "Le ministre du Tourisme, Edmund Bartlett, y voit la preuve que les investissements dans les ressources humaines, les infrastructures, l'expérience des visiteurs et la résilience portent leurs fruits. Selon lui, la compétitivité touristique ne se résume plus au soleil, à la mer et au sable.", "Le ministre s'exprimait lors d'un forum organisé pendant la Semaine de sensibilisation au tourisme, qui a réuni 250 lycéens autour de l'intelligence artificielle et des technologies numériques. Cette progression s'inscrit dans la stratégie « Tourism 3.0 », axée sur l'innovation, la formation, la durabilité et les liens entre le tourisme et le reste de l'économie."], "sources": [{"name": "Radio Télévision Caraïbes", "url": "https://www.radiotelevisioncaraibes.com/"}], "ai": false, "score": 0, "photo_ok": true, "photo_q": ["Negril beach Jamaica", "Jamaica beach"], "place": "news"}, {"id": "gpe-secheresse", "r": ["gp"], "pays": "Guadeloupe", "rub": "Agriculture", "date": "1er octobre 2026", "iso": "2026-10-05", "min": 2, "ill": "drought", "cap": "Illustration : une terre craquelée par le manque d'eau.", "title": "Sécheresse : les agriculteurs guadeloupéens peuvent solliciter le fonds de réarmement agricole", "chapo": "Le guichet est ouvert depuis le 1er octobre, en complément d'une aide exceptionnelle de trésorerie destinée aux exploitations fragilisées.", "body": ["Deux mesures ont été annoncées le 1er octobre pour les exploitants agricoles touchés par la sécheresse de 2026 : l'ouverture du guichet du fonds de réarmement agricole, et la mise en place d'une aide exceptionnelle à la trésorerie.", "Ces dispositifs visent à aider les exploitations à faire face aux pertes de récoltes et aux difficultés financières causées par le manque d'eau. L'archipel vit toujours au rythme des coupures programmées : un nouveau planning des tours d'eau a été publié cette semaine.", "Les effets de la sécheresse se font aussi sentir sur les étals, où les prix de certains produits sont en hausse, comme le montre le [[gpe-plantain|dernier relevé des prix]]. Les exploitants concernés sont invités à se renseigner auprès des services de l'État sur les conditions d'accès à ces aides."], "sources": [{"name": "Karibinfo", "url": "https://www.karibinfo.com/"}], "ai": false, "score": 0, "photo_ok": true, "photo_q": ["Guadeloupe agriculture field", "drought cracked soil"], "place": "news"}, {"id": "gpe-plantain", "r": ["gp"], "pays": "Guadeloupe", "rub": "Consommation", "date": "2 octobre 2026", "iso": "2026-10-05", "min": 1, "ill": "plantain", "cap": "Illustration : un étal de bananes plantain.", "title": "Guadeloupe : la banane plantain à 2,10 € le kilo, le chou en forte hausse", "chapo": "Le dernier relevé des prix sur les marchés fait apparaître une nette progression de certains légumes.", "body": ["La banane plantain s'échange désormais autour de 2,10 € le kilo, selon le relevé hebdomadaire des prix publié en fin de semaine.", "Côté légumes, c'est le chou qui enregistre la plus forte progression, avec une hausse de 21 %.", "Ces variations interviennent dans une année agricole difficile. L'État vient d'ouvrir plusieurs dispositifs d'aide pour les exploitants touchés par la sécheresse (lire notre article : [[gpe-secheresse|Sécheresse, le fonds de réarmement agricole est ouvert]])."], "sources": [{"name": "Karibinfo", "url": "https://www.karibinfo.com/"}], "ai": false, "score": 0, "photo_ok": true, "photo_q": ["plantain bunch market", "plantains"], "place": "news"}, {"id": "haiti-diaspora", "r": ["ht"], "pays": "Haïti", "rub": "Élections", "date": "2 octobre 2026", "iso": "2026-10-05", "min": 2, "ill": "vote", "cap": "Illustration : une urne près d'une fenêtre, un avion dans le ciel.", "title": "Haïti : le vote de la diaspora toujours en suspens", "chapo": "À l'approche des élections prévues en décembre, le Conseil électoral provisoire n'a pas encore trouvé comment faire voter les Haïtiens vivant à l'étranger.", "body": ["Le Conseil électoral provisoire (CEP) n'a toujours pas arrêté de formule pour permettre aux Haïtiens de l'étranger de participer au scrutin. La question est sensible : la diaspora, très présente aux États-Unis, au Canada, en France et dans la Caraïbe, joue un rôle majeur dans l'économie du pays grâce aux transferts d'argent.", "Le calendrier est serré. Haïti prépare des élections prévues en décembre, dans un contexte sécuritaire très dégradé qui complique déjà l'organisation du vote sur le territoire national (lire : [[haiti-gros-morne|à Gros-Morne, une attaque de gang fait au moins onze morts]]).", "Tant qu'aucune solution n'est retenue, les Haïtiens de l'étranger ne savent pas s'ils pourront voter."], "sources": [{"name": "Karibinfo", "url": "https://www.karibinfo.com/"}, {"name": "Radio Télévision Caraïbes", "url": "https://www.radiotelevisioncaraibes.com/"}], "ai": false, "score": 0, "photo_ok": true, "photo_q": ["ballot box", "ballot box election"], "place": "news"}, {"id": "gpe-uplg", "r": ["gp"], "pays": "Guadeloupe", "rub": "Politique", "date": "4 octobre 2026", "iso": "2026-10-05", "min": 1, "ill": "rally", "cap": "Illustration : une foule rassemblée devant une tribune au crépuscule.", "title": "L'UPLG fait sa rentrée politique à Capesterre-Belle-Eau", "chapo": "Le mouvement indépendantiste a réuni ses militants samedi autour d'un mot d'ordre : « La Guadeloupe face à ses responsabilités ».", "body": ["L'Union populaire pour la libération de la Guadeloupe (UPLG) a tenu sa rentrée politique samedi 3 octobre à Capesterre-Belle-Eau.", "Le thème retenu, « La Guadeloupe face à ses responsabilités », donne le ton de la saison politique du mouvement, fondé en 1978 et l'un des principaux courants indépendantistes de l'archipel."], "sources": [{"name": "RCI", "url": "https://rci.fm/"}], "ai": false, "score": 0, "photo_ok": true, "photo_q": ["Capesterre-Belle-Eau", "Capesterre-Belle-Eau Guadeloupe church"], "place": "news"}, {"id": "rd-aeroport", "r": ["do"], "pays": "République dominicaine", "rub": "Sécurité", "date": "Septembre 2026", "iso": "2026-10-05", "min": 2, "ill": "airport", "cap": "Illustration : une piste d'aéroport à l'aube.", "title": "Lutte antidrogue : les États-Unis autorisés à utiliser l'aéroport de Saint-Domingue", "chapo": "Le président Luis Abinader ouvre l'aéroport international et une base aérienne au dispositif américain dans la Caraïbe et le Pacifique.", "body": ["L'annonce a été faite par le président dominicain aux côtés du secrétaire américain à la Défense, Pete Hegseth. Les forces américaines pourront utiliser l'aéroport international de Saint-Domingue ainsi qu'une base aérienne dans le cadre de leur déploiement contre le trafic de drogue.", "Ce déploiement, qui couvre la Caraïbe et le Pacifique, suscite des réactions contrastées dans la région. Aux Bahamas, le gouvernement reproche ainsi à des agents de la DEA d'avoir agi sans autorisation (lire : [[bahamas-dea|Philip Davis demande à Washington de suivre la procédure]])."], "sources": [{"name": "La 1ère", "url": "https://la1ere.franceinfo.fr/"}, {"name": "AFP", "url": ""}], "ai": false, "score": 0, "photo_ok": true, "photo_q": ["Las Américas International Airport", "Santo Domingo airport"], "place": "news"}, {"id": "bvi-eau", "r": ["vg"], "pays": "Îles Vierges britanniques", "rub": "Société", "date": "2 octobre 2026", "iso": "2026-10-05", "min": 1, "ill": "tap", "cap": "Illustration : un robinet à sec.", "title": "Îles Vierges britanniques : des habitants privés d'eau courante depuis des semaines", "chapo": "Les pénuries persistent dans le territoire britannique, où certains foyers attendent toujours un retour à la normale.", "body": ["Dans les Îles Vierges britanniques, certains habitants n'ont plus d'eau courante depuis plusieurs semaines.", "Comme d'autres petites îles de la région, le territoire dépend largement du dessalement de l'eau de mer pour son approvisionnement, ce qui le rend vulnérable aux pannes et aux défaillances du réseau.", "La question de l'eau touche aussi les Antilles françaises : en Guadeloupe, les tours d'eau restent en vigueur dans plusieurs secteurs."], "sources": [{"name": "Radio Télévision Caraïbes", "url": "https://www.radiotelevisioncaraibes.com/"}], "ai": false, "score": 0, "photo_ok": true, "photo_q": ["Road Town Tortola", "British Virgin Islands"], "place": "news"}, {"id": "cepal-ressources", "r": ["rg"], "pays": "Région", "rub": "Économie", "date": "Septembre 2026", "iso": "2026-10-05", "min": 2, "ill": "cepal", "cap": "Illustration : forêt, rivière et plateforme en mer.", "title": "La Cepal invite la région à négocier avec ses ressources naturelles", "chapo": "Dans un nouveau rapport, la commission économique de l'ONU estime que ces richesses peuvent devenir un levier face aux bouleversements de l'ordre mondial.", "body": ["La Commission économique pour l'Amérique latine et les Caraïbes (Cepal) a publié un rapport consacré aux « ruptures » de l'ordre mondial, au premier rang desquelles la rivalité croissante entre la Chine et les États-Unis.", "Selon l'institution onusienne, les pays de la région devraient davantage utiliser leurs ressources naturelles comme levier de négociation avec leurs partenaires.", "L'Amérique latine et la Caraïbe disposent notamment d'importantes réserves de minerais, d'hydrocarbures et de terres agricoles, ainsi que d'une biodiversité parmi les plus riches de la planète."], "sources": [{"name": "La 1ère", "url": "https://la1ere.franceinfo.fr/"}, {"name": "AFP", "url": ""}], "ai": false, "score": 0, "photo_ok": true, "photo_q": ["Caribbean rainforest river", "Dominica rainforest"], "place": "news"}, {"id": "air-caraibes", "r": ["rg"], "pays": "Région", "rub": "Transports", "date": "5 octobre 2026", "iso": "2026-10-05", "min": 1, "ill": "flight", "cap": "Illustration : un avion au-dessus des nuages au coucher du soleil.", "title": "Air Caraïbes rouvre Saint-Martin et les Bahamas ce mois-ci", "chapo": "La compagnie relance plusieurs lignes saisonnières au départ de Paris-Orly en octobre.", "body": ["Les vols vers Cancún ont repris le 5 octobre, avec jusqu'à trois rotations par semaine. Saint-Martin (aéroport de Juliana) sera de nouveau desservi à partir du 15 octobre, jusqu'à deux fois par semaine, et San Salvador, aux Bahamas, à partir du 22 octobre avec un vol hebdomadaire.", "Ces lignes complètent les axes historiques de la compagnie vers Pointe-à-Pitre et Fort-de-France. Entre les deux îles, Air Caraïbes propose jusqu'à huit vols par jour, et jusqu'à sept entre Pointe-à-Pitre et Saint-Martin."], "sources": [{"name": "L'Echo touristique", "url": "https://www.lechotouristique.com/"}], "ai": false, "score": 0, "photo_ok": true, "photo_q": ["Air Caraïbes Airbus", "Princess Juliana International Airport"], "place": "news"}, {"id": "gpe-feux", "r": ["gp"], "pays": "Guadeloupe", "rub": "Faits divers", "date": "3 octobre 2026", "iso": "2026-10-05", "min": 1, "ill": "fires", "cap": "Illustration : une poubelle en feu dans une rue, la nuit.", "title": "Agglomération pointoise : cinquième nuit consécutive de feux de poubelles", "chapo": "De nouveaux départs de feu ont été signalés dans la nuit de vendredi à samedi.", "body": ["Plusieurs feux de poubelles et de détritus ont de nouveau été signalés dans la nuit de vendredi à samedi dans l'agglomération de Pointe-à-Pitre.", "C'est la cinquième nuit consécutive marquée par ces départs de feu. Les circonstances de ces incendies n'ont pas été précisées à ce stade."], "sources": [{"name": "La 1ère", "url": "https://la1ere.franceinfo.fr/"}], "ai": false, "score": 0, "photo_ok": false, "photo_q": [], "place": "news"}, {"id": "mq-bele", "r": ["mq"], "pays": "Martinique", "rub": "Culture", "date": "4 octobre 2026", "iso": "2026-10-05", "min": 2, "ill": "drum", "cap": "Illustration : un tambour bèlè sous un projecteur.", "title": "Le tambour bèlè devient une enceinte connectée", "chapo": "Présentée samedi soir en Martinique, l'innovation fait dialoguer l'un des symboles du patrimoine martiniquais avec les technologies d'aujourd'hui.", "body": ["C'est lors de la conférence « Le tambour bèlè, entre héritage et tradition », samedi 3 octobre au soir, que le projet a été présenté au public : un tambour bèlè transformé en enceinte connectée.", "## Un instrument au cœur d'une tradition", "Le tambour bèlè est un instrument de forme conique, traditionnellement fabriqué à partir d'un tronc évidé ou d'un baril en bois, sur lequel est tendue une peau de cabri. Il porte le bèlè, une pratique qui mêle musique, chant, danse et conte, fondée sur le dialogue entre un chanteur soliste et un chœur. Le tanbouyé est accompagné du tibwa, deux baguettes frappées sur un morceau de bambou.", "Née sur les habitations à l'époque de l'esclavage, cette tradition est attestée dès les années 1830 dans la région de Sainte-Marie. Longtemps marginalisée, elle connaît depuis plusieurs décennies un large renouveau, porté par des associations, des écoles et des artistes, et s'invite désormais aussi en ligne."], "sources": [{"name": "RCI", "url": "https://rci.fm/"}], "ai": false, "score": 0, "photo_ok": true, "photo_q": ["tambour bèlè", "Martinique drum tanbou"], "place": "culture"}, {"id": "mq-pinkrun", "r": ["mq"], "pays": "Martinique", "rub": "Santé", "date": "4 octobre 2026", "iso": "2026-10-05", "min": 1, "ill": "pinkrun", "cap": "Illustration : des coureurs en rose dans les rues de Fort-de-France.", "title": "Pink Run : record de participation à Fort-de-France", "chapo": "La course solidaire contre le cancer du sein a réuni samedi plus de participants que lors de ses précédentes éditions.", "body": ["Samedi 3 octobre dans l'après-midi, les rues de Fort-de-France se sont teintées de rose : la Pink Run a enregistré un record de participation.", "L'événement s'inscrit dans Octobre rose, la campagne annuelle de sensibilisation au dépistage du cancer du sein. En France, le dépistage organisé est proposé tous les deux ans aux femmes de 50 à 74 ans."], "sources": [{"name": "RCI", "url": "https://rci.fm/"}], "ai": false, "score": 0, "photo_ok": true, "photo_q": ["Fort-de-France Martinique", "Fort-de-France bay"], "place": "news"}];
+var PAYS={"gp": "Guadeloupe", "mq": "Martinique", "gf": "Guyane", "ht": "Haïti", "do": "République dominicaine", "jm": "Jamaïque", "cu": "Cuba", "tt": "Trinité-et-Tobago", "bb": "Barbade", "lc": "Sainte-Lucie", "dm": "Dominique", "bs": "Bahamas", "gd": "Grenade", "sx": "Saint-Martin", "bl": "Saint-Barthélemy", "pr": "Porto Rico", "vg": "Îles Vierges", "rg": "Région"};
+(function(){
+  var used={};ARTICLES.forEach(function(a){a.r.forEach(function(r){used[r]=(used[r]||0)+1;});});
+  var FILTERS=[["all","Toutes les îles"]].concat(Object.keys(PAYS).filter(function(k){return used[k];}).map(function(k){return [k,k==="do"?"Rép. dominicaine":PAYS[k]];}));
+  var byId={}; ARTICLES.forEach(function(a){byId[a.id]=a;});
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function links(s){return esc(s).replace(/\[\[([a-z0-9-]+)\|([^\]]+)\]\]/g,function(m,id,t){return '<a href="#/'+id+'">'+t+'</a>';});}
+  function plain(s){return s.replace(/\[\[[a-z0-9-]+\|([^\]]+)\]\]/g,'$1');}
+  function ill(a,cls){
+    if(a.img&&a.img.src)return '<div class="ill photo '+(cls||'')+'"><img src="'+esc(a.img.src)+'" alt="Photo d\'illustration : '+esc(a.cap.replace(/^Illustration : /,''))+'" loading="lazy" decoding="async"></div>';
+    return '<div class="ill '+(cls||'')+'" role="img" aria-label="'+esc(a.cap)+'">'+ILL(a.ill)+'</div>';}
+  function credit(a){
+    if(!(a.img&&a.img.src))return esc(a.cap)+' (illustration originale)';
+    var i=a.img,lic=i.license_url?'<a href="'+esc(i.license_url)+'" target="_blank" rel="noopener">'+esc(i.license)+'</a>':esc(i.license);
+    return 'Photo d\'illustration : '+esc(i.credit)+' / '+(i.page?'<a href="'+esc(i.page)+'" target="_blank" rel="noopener">'+esc(i.source)+'</a>':esc(i.source))+', '+lic+'. Cette photo ne montre pas les faits décrits.';}
+  function kicker(a){return '<p class="cat"><span class="pays">'+esc(a.pays)+'</span>'+esc(a.rub)+' · '+esc(a.date)+'</p>';}
+
+  // Filtres
+  var fbox=document.getElementById('filters');
+  fbox.innerHTML=FILTERS.map(function(f){return '<button type="button" data-f="'+f[0]+'" aria-pressed="false">'+f[1]+'</button>';}).join('');
+
+  // Accueil
+  var lead=ARTICLES.filter(function(a){return a.place==='lead';})[0];
+  if(!lead){document.getElementById('hero').hidden=true;} else document.getElementById('hero').innerHTML=ill(lead)+'<div class="wrap hero-txt">'+kicker(lead)+'<a href="#/'+lead.id+'"><h2>'+esc(lead.title)+'</h2></a><p class="chapo">'+esc(lead.chapo)+'</p><p class="meta">'+lead.min+' min de lecture</p></div>';
+  document.getElementById('trio').innerHTML=ARTICLES.filter(function(a){return a.place==='side';}).map(function(a){
+    return '<article class="card item" data-r="'+a.r.join(' ')+'"><a href="#/'+a.id+'">'+ill(a)+'<div>'+kicker(a)+'<h3>'+esc(a.title)+'</h3></div></a></article>';}).join('');
+  document.getElementById('rows').innerHTML=ARTICLES.filter(function(a){return a.place==='news';}).map(function(a){
+    return '<article class="row item" data-r="'+a.r.join(' ')+'"><a href="#/'+a.id+'"><div>'+kicker(a)+'<h3>'+esc(a.title)+'</h3><p class="sum">'+esc(a.chapo)+'</p><p class="meta">'+a.min+' min de lecture</p></div>'+ill(a)+'</a></article>';}).join('');
+  var cult=ARTICLES.filter(function(a){return a.place==='culture';});if(!cult.length)document.getElementById('cultureSec').hidden=true;
+  document.getElementById('culture').innerHTML=cult.map(function(a,i){
+    return '<article class="feature'+(i%2?' rev':'')+'"><a href="#/'+a.id+'">'+ill(a)+'<div>'+kicker(a)+'<h3>'+esc(a.title)+'</h3><p class="sum">'+esc(a.chapo)+'</p><p class="meta">Lire l\'article</p></div></a></article>';}).join('');
+  document.getElementById('rank').innerHTML=ARTICLES.slice().sort(function(a,b){return (b.score||0)-(a.score||0);}).slice(0,5).map(function(a){return '<li><a href="#/'+a.id+'"><span class="t">'+esc(a.title)+'</span></a></li>';}).join('');
+  var sn={};ARTICLES.forEach(function(a){(a.sources||[]).forEach(function(s){sn[s.name]=(sn[s.name]||0)+1;});});
+  document.getElementById('srcs').innerHTML=Object.keys(sn).sort(function(a,b){return sn[b]-sn[a];}).map(function(n){return '<li><b>'+esc(n)+'</b>'+sn[n]+' article'+(sn[n]>1?'s':'')+'</li>';}).join('');
+
+  var withImg=ARTICLES.filter(function(a){return a.img&&a.img.src;});
+  if(withImg.length)document.getElementById('credits').innerHTML='<p><b>Crédits photos</b> — photos d\'illustration issues de banques d\'images libres :</p>'+withImg.map(function(a){return '<p>« '+esc(a.title)+' » : '+credit(a).replace(/^Photo d'illustration : /,'')+'</p>';}).join('');
+  else document.getElementById('credits').hidden=true;
+  var btns=fbox.querySelectorAll('button'),empty=document.getElementById('empty'),count=document.getElementById('count');
+  function apply(f){
+    var n=0;
+    btns.forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-f')===f?'true':'false');});
+    document.querySelectorAll('.item').forEach(function(el){var ok=f==='all'||el.getAttribute('data-r').split(' ').indexOf(f)>-1;el.hidden=!ok;if(ok&&el.classList.contains('row'))n++;});
+    empty.hidden=n>0;
+    empty.textContent='Les articles sur cette île sont à la une, en haut de page, ou dans la rubrique culture.';
+    count.textContent=n+(n>1?' articles':' article');
+  }
+  var current='all';
+  btns.forEach(function(b){b.addEventListener('click',function(){current=b.getAttribute('data-f');try{localStorage.setItem('vwesa-filter',current);}catch(e){}
+    if(location.hash&&location.hash!=='#/'){location.hash='#/';} apply(current);
+    if(current!=='all')setTimeout(function(){document.getElementById('trio').scrollIntoView({behavior:'smooth',block:'start'});},30);});});
+  try{var s=localStorage.getItem('vwesa-filter');if(s&&FILTERS.some(function(f){return f[0]===s;}))current=s;}catch(e){}
+  apply(current);
+
+  // Page article
+  function renderArticle(a){
+    var body=a.body.map(function(p){return p.indexOf('## ')===0?'<h2>'+esc(p.slice(3))+'</h2>':'<p>'+links(p)+'</p>';}).join('');
+    var rel=ARTICLES.filter(function(x){return x.id!==a.id&&x.r.some(function(r){return a.r.indexOf(r)>-1;});});
+    ARTICLES.forEach(function(x){if(rel.length<3&&x.id!==a.id&&rel.indexOf(x)<0)rel.push(x);});
+    rel=rel.slice(0,3);
+    document.getElementById('article').innerHTML=
+      '<button class="back" type="button" id="backBtn">‹ Retour à l\'accueil</button>'+
+      '<div class="art-head">'+kicker(a)+'<h1>'+esc(a.title)+'</h1><p class="chapo">'+esc(a.chapo)+'</p>'+
+      '<div class="byline"><span>Par <b>la rédaction de Vwè Sa</b>'+(a.ai?' avec l\'aide d\'une IA':'')+'</span><span>Publié le '+esc(a.date)+'</span><span>'+a.min+' min de lecture</span></div></div>'+
+      '<figure>'+ill(a)+'<figcaption>'+credit(a)+'</figcaption></figure>'+
+      '<div class="art-grid"><div class="art-body">'+body+'<div class="sources"><b>Sources</b> : '+(a.sources||[]).map(function(s){return s.url?'<a href="'+esc(s.url)+'" target="_blank" rel="noopener">'+esc(s.name)+'</a>':esc(s.name);}).join(', ')+'.<br>'+(a.ai?'Résumé rédigé avec l\'aide d\'une intelligence artificielle, à partir de ces sources uniquement. ':'')+'Pour lire l\'article complet, rendez-vous sur le site du média. Une erreur ? <a href="mailto:contact@exemple.fr">Signalez-la</a>.</div></div>'+
+      '<aside class="related"><h3>À lire aussi</h3>'+rel.map(function(x){return '<article class="card"><a href="#/'+x.id+'">'+ill(x)+kicker(x)+'<h3>'+esc(x.title)+'</h3></a></article>';}).join('')+'</aside></div>';
+    document.getElementById('backBtn').addEventListener('click',function(){location.hash='#/';});
+    document.title=plain(a.title)+' — Vwè Sa';
+  }
+  function route(){
+    var id=(location.hash||'').replace(/^#\/?/,'');
+    var a=byId[id];
+    document.getElementById('home').hidden=!!a;
+    document.getElementById('articleView').hidden=!a;
+    if(a){renderArticle(a);window.scrollTo(0,0);}else{document.title="Vwè Sa — L&#x27;actualité des îles de la Caraïbe";}
+  }
+  window.addEventListener('hashchange',route);route();
+
+  var root=document.documentElement;
+  try{var th=localStorage.getItem('vwesa-theme');if(th)root.setAttribute('data-theme',th);}catch(e){}
+  document.getElementById('themeBtn').addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var nx=cur==='dark'?'light':'dark';root.setAttribute('data-theme',nx);try{localStorage.setItem('vwesa-theme',nx);}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>

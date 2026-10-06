@@ -1,0 +1,12 @@
+Ces deux fichiers sont une copie de secours.
+
+Sur Mac et Windows, le dossier « .github » est caché : il arrive qu'il ne soit
+pas envoyé quand on glisse les fichiers sur GitHub. Sans lui, le site s'affiche
+mais ne se met pas à jour tout seul.
+
+Pour vérifier : sur la page de votre dépôt GitHub, vous devez voir un dossier
+« .github ». S'il manque :
+  1. Add file → Create new file
+  2. Nom du fichier : .github/workflows/mise-a-jour.yml
+  3. Collez le contenu de mise-a-jour.yml (ce dossier), puis Commit changes
+  4. Recommencez avec .github/workflows/regenerer.yml

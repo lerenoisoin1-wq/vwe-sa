@@ -1,0 +1,62 @@
+name: Mise à jour quotidienne de Vwè Sa
+
+on:
+  schedule:
+    - cron: "0 10 * * *"   # tous les jours à 10h UTC = 6h aux Antilles
+  workflow_dispatch:        # bouton « Run workflow » pour lancer à la main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: mise-a-jour
+  cancel-in-progress: false
+
+jobs:
+  edition:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer les dépendances
+        run: pip install -r requirements.txt
+
+      - name: Préparer l'édition du jour
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/update.py
+
+      # ── Mode par défaut (recommandé) : RELECTURE HUMAINE ──
+      # L'édition est proposée sous forme de « pull request ». Vous la relisez,
+      # puis vous cliquez sur « Merge » pour la publier.
+      - name: Proposer l'édition pour relecture
+        if: vars.PUBLICATION_AUTO != 'oui'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: edition-du-jour
+          delete-branch: true
+          commit-message: "Édition du jour à relire"
+          title: "📰 Édition du jour à relire"
+          body: |
+            Nouvelle édition générée automatiquement.
+            Relisez les articles (onglet « Files changed », fichier data/articles.json),
+            puis cliquez sur « Merge pull request » pour publier.
+            Pour refuser un article, supprimez-le du fichier avant de valider.
+          add-paths: |
+            data/
+            docs/
+
+      # ── Mode publication automatique (si la variable PUBLICATION_AUTO vaut « oui ») ──
+      - name: Publier directement
+        if: vars.PUBLICATION_AUTO == 'oui'
+        run: |
+          git config user.name "vwesa-bot"
+          git config user.email "vwesa-bot@users.noreply.github.com"
+          git add data docs
+          git commit -m "Édition du $(date -u +%F)" || echo "Rien de nouveau"
+          git push

@@ -1,0 +1,52 @@
+# ─────────────────────────────────────────────────────────────
+#  Vwè Sa — configuration
+#  Modifiez ce fichier puis enregistrez : la prochaine mise à jour
+#  en tiendra compte.
+# ─────────────────────────────────────────────────────────────
+
+site:
+  nom: "Vwè Sa"
+  slogan: "L'actualité des îles de la Caraïbe"
+  url: "https://lerenoisoin1-wq.github.io/vwe-sa/"
+  email_contact: "contact@exemple.fr"             # à remplacer : sert aux demandes de rectification
+
+# ── Mentions légales (OBLIGATOIRES en France, loi LCEN art. 6) ──
+# Un site d'information doit identifier son éditeur, son directeur
+# de la publication et son hébergeur. Remplissez TOUS les champs.
+mentions_legales:
+  editeur_nom: "Prénom NOM"                       # ou raison sociale
+  editeur_adresse: "Adresse postale complète"
+  editeur_telephone: "+590 ..."                    # personne physique : peut être remplacé par l'hébergeur si vous préservez votre anonymat (voir README)
+  directeur_publication: "Prénom NOM"
+  hebergeur_nom: "GitHub, Inc."
+  hebergeur_adresse: "88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis"
+
+# ── Flux RSS utilisés ──
+# Seuls le titre, le lien et le court résumé fournis par le flux sont lus.
+# Le programme vérifie le fichier robots.txt de chaque site avant de lire.
+# Ajoutez/retirez des flux librement. Vérifiez les conditions d'utilisation
+# de chaque média (voir README, section « Cadre légal »).
+flux:
+  - nom: "La 1ère Martinique"
+    url: "https://la1ere.franceinfo.fr/martinique/actu/rss"
+  - nom: "La 1ère Guadeloupe"
+    url: "https://la1ere.franceinfo.fr/guadeloupe/actu/rss"   # adresse à vérifier
+  - nom: "La 1ère Outre-mer"
+    url: "https://la1ere.franceinfo.fr/actu/rss"
+  - nom: "France 24 – Guadeloupe"
+    url: "https://www.france24.com/fr/tag/guadeloupe/rss"
+  - nom: "France 24 – Martinique"
+    url: "https://www.france24.com/fr/tag/martinique/rss"
+  - nom: "France 24 – Haïti"
+    url: "https://www.france24.com/fr/tag/haiti/rss"          # adresse à vérifier
+  - nom: "RFI – Martinique"
+    url: "https://www.rfi.fr/fr/tag/martinique/rss"
+  - nom: "Préfecture de Guadeloupe"
+    url: "https://www.guadeloupe.gouv.fr/syndication/flux/rss_feed_72"
+
+# ── Réglages de l'édition ──
+edition:
+  articles_par_jour: 10          # nombre d'articles rédigés à chaque mise à jour
+  fenetre_heures: 36             # on ne garde que les infos publiées dans les X dernières heures
+  jours_archives: 7              # combien de jours d'articles restent affichés
+  modele: "claude-sonnet-5-5"    # modèle Claude utilisé (voir docs.claude.com pour la liste)

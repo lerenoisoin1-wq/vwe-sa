@@ -1,0 +1,29 @@
+name: Régénérer le site après relecture
+
+# Quand vous modifiez data/articles.json à la main (suppression ou correction
+# d'un article), ce workflow reconstruit les pages du site automatiquement.
+on:
+  push:
+    branches: [main]
+    paths: ["data/articles.json", "templates/**", "config.yaml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python scripts/update.py --rebuild
+      - run: |
+          git config user.name "vwesa-bot"
+          git config user.email "vwesa-bot@users.noreply.github.com"
+          git add docs
+          git commit -m "Site régénéré" || echo "Rien à régénérer"
+          git push
