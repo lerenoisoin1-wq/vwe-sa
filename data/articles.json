@@ -223,7 +223,7 @@
   ],
   "ai": false,
   "score": 0,
-  "photo_ok": true,
+  "photo_ok": false,
   "photo_q": [
    "Guadeloupe agriculture field",
    "drought cracked soil"
@@ -325,7 +325,7 @@
   ],
   "ai": false,
   "score": 0,
-  "photo_ok": true,
+  "photo_ok": false,
   "photo_q": [
    "Capesterre-Belle-Eau",
    "Capesterre-Belle-Eau Guadeloupe church"
@@ -558,7 +558,7 @@
   ],
   "ai": false,
   "score": 0,
-  "photo_ok": true,
+  "photo_ok": false,
   "photo_q": [
    "Fort-de-France Martinique",
    "Fort-de-France bay"
