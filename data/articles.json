@@ -84,7 +84,16 @@
   "photo_q": [
    "Estadio Olímpico Félix Sánchez",
    "football stadium Santo Domingo"
-  ]
+  ],
+  "img_tried": true,
+  "img": {
+   "credit": "ThePapo309",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Estadio_Olimpico_Drone.jpg",
+   "source": "Wikimedia Commons",
+   "src": "img/foot-hispaniola.jpg"
+  }
  },
  {
   "id": "grenade-elections",
@@ -118,7 +127,16 @@
   "photo_q": [
    "St. George's Grenada harbour",
    "Grenada parliament building"
-  ]
+  ],
+  "img_tried": true,
+  "img": {
+   "credit": "Unknown author",
+   "license": "Public domain",
+   "license_url": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Grenada_-_Inner_Harbour,_St._George%27s.jpg",
+   "source": "Wikimedia Commons",
+   "src": "img/grenade-elections.jpg"
+  }
  },
  {
   "id": "bahamas-dea",
@@ -160,7 +178,16 @@
   "photo_q": [
    "Nassau Bahamas harbour",
    "Bahamas aerial sea"
-  ]
+  ],
+  "img_tried": true,
+  "img": {
+   "credit": "Kiran891",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Nassau_Harbour_Lighthouse,_near_Nassau_Cruise_Port,_Bahamas_(March_14,_2024)_02.jpg",
+   "source": "Wikimedia Commons",
+   "src": "img/bahamas-dea.jpg"
+  }
  },
  {
   "id": "jamaique-tourisme",
@@ -194,7 +221,16 @@
   "photo_q": [
    "Negril beach Jamaica",
    "Jamaica beach"
-  ]
+  ],
+  "img_tried": true,
+  "img": {
+   "credit": "This picture has been taken by Oleg Yunakov . Contact e-mail: yunakov gmail.com . Image can be used in accordance with t",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Jamaica_-_Negril_-_047.jpg",
+   "source": "Wikimedia Commons",
+   "src": "img/jamaique-tourisme.jpg"
+  }
  },
  {
   "id": "gpe-secheresse",
@@ -260,7 +296,16 @@
   "photo_q": [
    "plantain bunch market",
    "plantains"
-  ]
+  ],
+  "img_tried": true,
+  "img": {
+   "credit": "BishopNana",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Plantain_Bunches.jpg",
+   "source": "Wikimedia Commons",
+   "src": "img/gpe-plantain.jpg"
+  }
  },
  {
   "id": "haiti-diaspora",
@@ -297,7 +342,16 @@
   "photo_q": [
    "ballot box",
    "ballot box election"
-  ]
+  ],
+  "img_tried": true,
+  "img": {
+   "credit": "Antti Leppänen",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:S%C3%A4yn%C3%A4tsalo_Town_Hall_council_chamber_ballot_box.jpg",
+   "source": "Wikimedia Commons",
+   "src": "img/haiti-diaspora.jpg"
+  }
  },
  {
   "id": "gpe-uplg",
@@ -365,7 +419,16 @@
   "photo_q": [
    "Las Américas International Airport",
    "Santo Domingo airport"
-  ]
+  ],
+  "img_tried": true,
+  "img": {
+   "credit": "Lacreta at English Wikipedia",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "page": "https://commons.wikimedia.org/wiki/File:MDSD-TerminalA.JPG",
+   "source": "Wikimedia Commons",
+   "src": "img/rd-aeroport.jpg"
+  }
  },
  {
   "id": "bvi-eau",
@@ -398,7 +461,16 @@
   "photo_q": [
    "Road Town Tortola",
    "British Virgin Islands"
-  ]
+  ],
+  "img_tried": true,
+  "img": {
+   "credit": "superde1uxe from California, USA",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Road_Town,_Tortola_BVI_-2_(4641251900).jpg",
+   "source": "Wikimedia Commons",
+   "src": "img/bvi-eau.jpg"
+  }
  },
  {
   "id": "cepal-ressources",
@@ -435,7 +507,16 @@
   "photo_q": [
    "Caribbean rainforest river",
    "Dominica rainforest"
-  ]
+  ],
+  "img_tried": true,
+  "img": {
+   "credit": "Stoschmidt",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
+   "page": "https://commons.wikimedia.org/wiki/File:R%C3%ADo_San_Juan02.JPG",
+   "source": "Wikimedia Commons",
+   "src": "img/cepal-ressources.jpg"
+  }
  },
  {
   "id": "air-caraibes",
@@ -467,7 +548,16 @@
   "photo_q": [
    "Air Caraïbes Airbus",
    "Princess Juliana International Airport"
-  ]
+  ],
+  "img_tried": true,
+  "img": {
+   "credit": "Maxime ✈ from Le François , Martinique",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Air_Cara%C3%AFbes_Airbus_A350-941_winglet.jpg",
+   "source": "Wikimedia Commons",
+   "src": "img/air-caraibes.jpg"
+  }
  },
  {
   "id": "gpe-feux",
@@ -530,7 +620,8 @@
   "photo_q": [
    "tambour bèlè",
    "Martinique drum tanbou"
-  ]
+  ],
+  "img_tried": true
  },
  {
   "id": "mq-pinkrun",
